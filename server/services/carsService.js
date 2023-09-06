@@ -1,19 +1,19 @@
-var CarModel = require('../models/car')
+let CarModel = require('../models/car')
 
-// var find = function()
-// {
-//     return CarModel.find({}).limit(2)
-// }
-//pagination
-var pagination=function(skip,limit){
+
+let pagination = function(skip,limit){
     return CarModel.find({}).skip(skip).limit(limit);
 }
 //number of cars in db
-var countAllObj=function()
+let countAllObj = function()
 {
     return CarModel.countDocuments({});
 }
 
+let getCarByID = function(id)
+{
+    return CarModel.findById(id)
+}
 module.exports={
-    countAllObj,pagination
+    countAllObj,pagination,getCarByID
 }

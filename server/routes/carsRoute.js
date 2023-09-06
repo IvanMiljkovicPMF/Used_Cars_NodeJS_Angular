@@ -1,8 +1,9 @@
 
-var CarController=require('../controllers/carController')
-var express = require('express')
-var router = express.Router()
+let CarController=require('../controllers/carController')
+let express = require('express')
+let router = express.Router()
 
-router.get('/cars/:page',CarController.getAllCarsPagination)
+router.get('/:page',CarController.getAllCarsPagination)
 
+router.get('/car/:id',CarController.getCarByID)
 module.exports=router

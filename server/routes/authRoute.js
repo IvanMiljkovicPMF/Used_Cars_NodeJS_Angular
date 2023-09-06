@@ -1,9 +1,9 @@
-var authService = require('../services/userService')
-var express = require('express')
-var router = express.Router()
+let authService = require('../services/userService')
+let express = require('express')
+let router = express.Router()
 
-var passport = require('../middleware/passport')
-var userController = require('../controllers/userController')
+let passport = require('../middleware/passport')
+let userController = require('../controllers/userController')
 
 router.post('/register',userController.register)
 
