@@ -13,6 +13,11 @@ import{HttpClientModule}from '@angular/common/http'
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { CardModule } from 'primeng/card'; // Import CardModule
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,9 +33,11 @@ import { AppRoutingModule } from './app-routing.module';
   imports: [
    
     BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     CommonModule,
     FormsModule,
+    CardModule,
     AppRoutingModule
   ],
   providers: [],
