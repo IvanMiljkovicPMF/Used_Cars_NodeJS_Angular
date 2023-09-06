@@ -1,0 +1,22 @@
+[{
+  "_id": {
+    "$oid": "64f7b0e3e76b04d81ad47c97"
+  },
+  "email": "ivan@gmail.com",
+  "name": "ivan",
+  "admin": false,
+  "salt": "28fd0005547cb580a4f1e20128b70fce",
+  "hash": "2958a0bfe0f4832baa17522862ddc37b8de9b5a73d1b98c619d796cb40897db2a35dd1798db5e39cbe82c990a33d92128f889070909d8c260305b821bd37409a",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64f7b32bb168f3fc7bd8859b"
+  },
+  "email": "ivanmiljkovic@gmail.com",
+  "name": "ivan",
+  "admin": false,
+  "salt": "cb2a63c5554e7817f9da183dbdaa2233",
+  "hash": "8685a7a95f90a00a92bf451fb110c8d8bc2b3b37fe040087808149dc288bdf79d7c2134fd79ace28a97accc96c221d6f6ec3452ec1fbaab8d7290bb66294f8b9",
+  "__v": 0
+}]
