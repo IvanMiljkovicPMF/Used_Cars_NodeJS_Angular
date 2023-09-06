@@ -10,7 +10,8 @@ const carRoute=require('./routes/carsRoute')
 const authRoutes = require('./routes/authRoute')
 
 app.use(express.json())
-app.unsubscribe(cors())
+app.use(cors())
+// app.unsubscribe(cors())
 
 app.use('/home',carRoute)
 app.use('/cars',carRoute)
