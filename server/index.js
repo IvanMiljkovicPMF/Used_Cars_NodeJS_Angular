@@ -3,7 +3,7 @@ const app=express()
 const config = require('./configuration/config')
 const cors = require('cors')
 
-var mongoose=require('mongoose')
+let mongoose=require('mongoose')
 mongoose.connect(config.dbConnection)
 
 const carRoute=require('./routes/carsRoute')
@@ -13,6 +13,7 @@ app.use(express.json())
 app.unsubscribe(cors())
 
 app.use('/home',carRoute)
+app.use('/cars',carRoute)
 app.use("/auth",authRoutes)
 
 app.get('/',function(req,res){
