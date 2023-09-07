@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { Companies } from 'src/app/models/cars';
+import { CarsService } from 'src/app/services/cars.service/cars.service';
 
 @Component({
   selector: 'app-cars-adds',
@@ -6,5 +9,143 @@ import { Component } from '@angular/core';
   styleUrls: ['./cars-adds.component.css']
 })
 export class CarsAddsComponent {
+
+  rangeValues: [number,number] = [12000, 50000];
+
+  loading: boolean = true;
+
+  leftPointerForCompanies: number = 0;
+  rightPointerForCompanies: number = 2;
+  companiesToDisplay: Companies[] = []
+  // TODO: za Ivana da ubaci kompanije u bazu
+  companies: Companies[] =[
+    {
+      name: 'Toyota',
+      imageUrl: 'https://www.freepnglogos.com/uploads/toyota-logo-png/toyota-logos-brands-logotypes-0.png',
+      description: 'Toyota is a well-known car manufacturer.'
+    },
+    {
+      name: 'Honda',
+      imageUrl: 'https://logohistory.net/wp-content/uploads/2023/01/Honda-Logo.svg',
+      description: 'Honda produces reliable and efficient vehicles.'
+    },
+    {
+      name: 'Ford',
+      imageUrl: 'https://1000logos.net/wp-content/uploads/2018/02/Ford-Logo.png',
+      description: 'Ford is known for its wide range of cars and trucks.'
+    },
+    {
+      name: 'Volkswagen',
+      imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Volkswagen_Logo_till_1995.svg/2048px-Volkswagen_Logo_till_1995.svg.png',
+      description: 'Volkswagen is a popular German automaker.'
+    },
+    {
+      name: 'BMW',
+      imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/BMW.svg/2048px-BMW.svg.png',
+      description: 'BMW produces luxury and high-performance vehicles.'
+    },
+    {
+      name: 'Mercedes-Benz',
+      imageUrl: 'https://logohistory.net/wp-content/uploads/2023/01/Mercedes-Benz-Logo.png',
+      description: 'Mercedes-Benz is a leading luxury car brand.'
+    },
+    {
+      name: 'Tesla',
+      imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/e/e8/Tesla_logo.png',
+      description: 'Tesla is known for its electric and autonomous vehicles.'
+    },
+    {
+      name: 'Chevrolet',
+      imageUrl: 'https://1000logos.net/wp-content/uploads/2019/12/Chevrolet-Logo-2010.png',
+      description: 'Chevrolet offers a variety of cars and trucks.'
+    },
+  ]
+
+  cars: any[] = []
+  currentPage:any
+  totalCars!:number
+  brojac: number = 625;
+  
+  constructor(private carsService:CarsService, private router: Router){
+
+  }
+
+  ngOnInit(){
+    this.getCars( this.currentPage)
+    
+    this.setCompaniesToDisplay()
+  }
+
+  setCompaniesToDisplay(){
+    for(let i =0;i<3;i++){
+      this.companiesToDisplay.push(this.companies[i])
+    }
+  }
+
+  moveCompaniesLeft(){
+    this.companiesToDisplay.pop()
+    this.leftPointerForCompanies--
+    this.rightPointerForCompanies--;
+
+    if(this.rightPointerForCompanies < 0){
+      this.rightPointerForCompanies=7
+    }
+    if(this.leftPointerForCompanies < 0){
+      this.leftPointerForCompanies=7
+    }
+
+    this.companiesToDisplay.unshift(this.companies[this.leftPointerForCompanies])
+  }
+  moveCompaniesRight(){
+    this.companiesToDisplay.shift()
+    this.leftPointerForCompanies++;
+    this.rightPointerForCompanies++;
+
+    if(this.rightPointerForCompanies > 7){
+      this.rightPointerForCompanies=0
+    }
+    if(this.leftPointerForCompanies > 7){
+      this.leftPointerForCompanies=0
+    }
+
+    this.companiesToDisplay.push(this.companies[this.rightPointerForCompanies])
+  }
+
+  logCars(){
+    console.log(this.cars);
+  }
+
+  // 626 je max
+
+  //TODO: bearer token!!!!!!!!
+
+  changePage(event:any){
+    this.currentPage = event.page + 1; 
+    this.getCars(this.currentPage);
+  }
+
+  getCars(index:number){
+    this.loading = true
+    this.carsService.getCarsForPage(index).subscribe({
+      next:val=>{
+        this.cars = []
+        // console.log(val);
+       
+        for(let i=0;i<val.cars.length;i++){
+          this.cars.push(val.cars[i])
+          // console.log(val.cars[i]);
+        }
+        this.totalCars=val.total
+        this.loading = false;
+      },
+      error:err=>{
+        console.log(err);
+        
+      }
+    })
+  }
+  navigateTo(car:any){
+    this.router.navigate([`car/${car}`])
+  }
 
 }

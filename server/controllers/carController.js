@@ -30,7 +30,7 @@ let getCarByID=async(req,res)=>{
       if (!car) {
         return res.status(404).json({ error: 'Car not found' });
       }
-      res.status(200).json(car);
+      res.status(200).json({car});
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: 'HTTP 500 error' });
@@ -53,9 +53,55 @@ let getCars=async(req,res)=>{
       return res.status(500).json({msg:"HTTP 500 error"})
   }
 }
+let saveCar = async (req, res) => {
+  try {
+    
+    const car = await CarServices.saveCar(req.body);
+    if(!car)
+    {
+      return res.status(404).json({ error: 'Car not created' });
+    }
+    res.status(201).json({car}); 
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'HTTP 500 error' }); 
+  }
+};
 
+let updateCar = async(req,res)=>{
+  try {
+    
+    const car = await CarServices.updateCar(req.body);
+    if(!car)
+    {
+      return res.status(404).json({ error: 'Car not updated' });
+    }
+    res.status(204).json({car}); 
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'HTTP 500 error' }); 
+  }
+};
+
+let deleteById = async(req,res)=>{
+  const carId = req.params.id;
+  try {
+    const car = await CarServices.deleteById(carId);
+    if(!car)
+    {
+      return res.status(404).json({ error: 'Car not deleted' });
+    }
+    res.status(204).json({car}); 
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'HTTP 500 error' }); 
+  }
+}
 module.exports={
     getAllCarsPagination,
     getCarByID,
-    getCars
-}
+    getCars,
+    saveCar,
+    deleteById,
+    updateCar
+  }

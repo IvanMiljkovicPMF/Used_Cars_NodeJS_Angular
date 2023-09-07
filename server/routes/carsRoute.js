@@ -9,8 +9,11 @@ router.get('/',CarController.getCars)
 
 router.get('/car/:id',CarController.getCarByID)
 
+router.post('/add',CarController.saveCar)
 
+router.put('/edit',CarController.updateCar)
 
-// router.get('/bestbuy',CarController.)
+router.delete('/delete/:id',CarController.deleteById)
 
 module.exports=router
+

@@ -13,6 +13,7 @@ let UserSchema = mongoose.Schema({
         required: true
     },
     admin: { type: Boolean },
+    vendor:{type:Boolean},
     hash: { type: String},
     salt: {type: String }
 })
@@ -38,7 +39,14 @@ UserSchema.methods.generateJwt = function()
         expire: parseInt(expire.getTime()/1000)
     }, "SECRET")
 }
-
+UserSchema.methods.getRole = function()
+{
+    if (this.admin)
+        return "ADMIN";
+    else if(this.vendor)
+        return "VENDOR"
+    return "USER";
+}
 var UserModel=mongoose.model('user',UserSchema)
 
 UserModel.register=async function(email,username,password)
@@ -46,7 +54,8 @@ UserModel.register=async function(email,username,password)
     var user=new UserModel({
         email:email,
         username:username,
-        admin:false
+        admin:false,
+        vendor:true
     })
     user.savePassword(password)
     try {

@@ -9,7 +9,7 @@ let getNewCars = function(limit){
 }
 let getBestBuyCars = function(limit){
     return CarModel.aggregate([
-        { $match: { ReliabilityRating: 5 } }, // Filter for cars above 2020 with ReliabilityRating 5
+        { $match: { ReliabilityRating: 5 } }, 
         { $sample: { size: limit } } ]);
 }
 
@@ -23,10 +23,28 @@ let getCarByID = function(id)
 {
     return CarModel.findById(id)
 }
+
+let saveCar= function(car)
+{
+    return CarModel.saveCar(car);
+}
+let updateCar= function(car)
+{
+    return CarModel.updateCar(car);
+}
+
+let deleteById = function(id)
+{
+    return CarModel.deleteById(id)
+}
 module.exports={
     countAllObj,
     pagination,
     getCarByID,
     getNewCars,
-    getBestBuyCars
+    getBestBuyCars,
+    saveCar,
+    updateCar,
+    deleteById
+
 }
