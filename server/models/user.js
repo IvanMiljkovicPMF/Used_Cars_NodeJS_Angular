@@ -2,7 +2,7 @@ const mongoose= require('mongoose')
 const crypto=require('crypto')
 const jwt=require('jsonwebtoken')
 
-var UserSchema = mongoose.Schema({
+let UserSchema = mongoose.Schema({
     email:{
         type: String,
         required: true,

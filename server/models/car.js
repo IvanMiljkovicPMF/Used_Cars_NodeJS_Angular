@@ -1,11 +1,12 @@
 const mongoose=require('mongoose')
 
-var CarScheme = mongoose.Schema({
+let CarScheme = mongoose.Schema({
     Year:{type:Number},
-    Make:{type:String}
-    
+    Make:{type:String},
+   
+
 })
 
-var CarModel = mongoose.model('car_raws',CarScheme)
+let CarModel = mongoose.model('car_raws',CarScheme)
 
 module.exports=CarModel
