@@ -17,6 +17,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card'; // Import CardModule
 import { PaginatorModule } from 'primeng/paginator';
+import { SingleCarComponent } from './pages/single-car/single-car.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { PaginatorModule } from 'primeng/paginator';
     LoginComponent,
     CarsAddsComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    SingleCarComponent
   ],
   imports: [
     BrowserAnimationsModule,
