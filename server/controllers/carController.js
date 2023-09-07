@@ -36,6 +36,26 @@ let getCarByID=async(req,res)=>{
       res.status(500).json({ error: 'HTTP 500 error' });
     }
 }
+let getCars=async(req,res)=>{
+  try {
+      const limit=15;
+      const newCars=await CarServices.getNewCars(limit);
+      const bestBuy=await CarServices.getBestBuyCars(limit);
+      if(!newCars || !bestBuy)
+      {
+         return res.status(404).json({ error: 'Cars not found' });
+      }
+
+      return res.status(200).json({newCars,bestBuy});
+
+  } catch (error) {
+      console.log(error);
+      return res.status(500).json({msg:"HTTP 500 error"})
+  }
+}
+
 module.exports={
-    getAllCarsPagination,getCarByID
+    getAllCarsPagination,
+    getCarByID,
+    getCars
 }

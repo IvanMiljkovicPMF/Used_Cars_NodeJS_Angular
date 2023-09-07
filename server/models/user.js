@@ -8,7 +8,7 @@ let UserSchema = mongoose.Schema({
         required: true,
         unique: true
     },
-    name: {
+    username: {
         type: String,
         required: true
     },
@@ -41,11 +41,11 @@ UserSchema.methods.generateJwt = function()
 
 var UserModel=mongoose.model('user',UserSchema)
 
-UserModel.register=async function(email,name,password)
+UserModel.register=async function(email,username,password)
 {
     var user=new UserModel({
         email:email,
-        name:name,
+        username:username,
         admin:false
     })
     user.savePassword(password)
