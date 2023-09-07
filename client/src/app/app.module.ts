@@ -14,9 +14,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card'; // Import CardModule
-
+import { PaginatorModule } from 'primeng/paginator';
 
 @NgModule({
   declarations: [
@@ -31,14 +31,16 @@ import { CardModule } from 'primeng/card'; // Import CardModule
     FooterComponent
   ],
   imports: [
-   
+    BrowserAnimationsModule,
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
     CommonModule,
     FormsModule,
     CardModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ButtonModule,
+    PaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
