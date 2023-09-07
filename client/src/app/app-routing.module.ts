@@ -6,6 +6,7 @@ import { AboutUsComponent } from './pages/about-us/about-us.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { NoAuthGuard } from './guards/no-auth-guard.guard';
+import { SingleCarComponent } from './pages/single-car/single-car.component';
 
 
 const routes: Routes = [
@@ -20,6 +21,10 @@ const routes: Routes = [
 {
   path:'about',
   component:AboutUsComponent,
+},
+{
+  path:'car/:id',
+  component:SingleCarComponent,
 },
 {
   path:'login',

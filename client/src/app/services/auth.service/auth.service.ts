@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Login } from '../../models/user';
+import { CookieService } from 'ngx-cookie-service';
+import { map } from 'rxjs/operators'; // Import the map operator
 
 
 @Injectable({
@@ -8,12 +11,49 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
 
-  constructor(private httpClient: HttpClient) { }
+  backendUrl='http://localhost:3000'
 
-  login(email: string, password: string): Observable<any> {
-    return this.httpClient.post<any>(`http://localhost:3000/auth/login`, {
-      email: email,
-      password: password
-    })
+  private authStatusSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+
+  // Expose the authStatus as an Observable
+  authStatus: Observable<boolean> = this.authStatusSubject.asObservable();
+
+
+
+  constructor(private http:HttpClient,private cookie:CookieService) { }
+
+  register(register:Login):Observable<any>{
+
+    return this.http.post(`${this.backendUrl}/auth/register`,register,{responseType:'text'})
+    
   }
+
+  login(login: Login): Observable<any> {
+    return this.http.post(`${this.backendUrl}/auth/login`, login, { responseType: 'text' }).pipe(
+      map((response: string) => {
+        // Assuming your login API sets the token cookie upon successful login
+        if (response) {
+          this.authStatusSubject.next(true); // Notify subscribers that the user is logged in
+          console.log("uso sam ovde");
+          
+        }      
+        return response;
+      })
+    );
+  }
+
+
+  isAuthenticated(){
+    if(this.cookie.get("token")){
+        return true
+    }
+    return false;
+  
+
+  }
+  logOut(){
+    this.cookie.delete("token")
+    this.authStatusSubject.next(false); // Notify subscribers that the user is logged out
+  }
+
 }

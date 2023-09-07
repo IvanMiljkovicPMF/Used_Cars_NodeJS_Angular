@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service/auth.service';
 
 @Component({
@@ -9,27 +10,35 @@ import { AuthService } from 'src/app/services/auth.service/auth.service';
 export class NavbarComponent {
 
   // TODO get this from localStorage
-  loggedIn: boolean = true;
+  loggedIn: boolean = false;
+  authSubscription!: Subscription; // Declare an auth subscription
 
-  constructor(private authService:AuthService){
 
-  }
-  onInit(){
+  constructor(private authService:AuthService){}
+
+  ngOnInit(){
+
+      // Subscribe to the authentication status changes
+      this.authSubscription = this.authService.authStatus.subscribe((status: boolean) => {
+        this.loggedIn = status;
+        console.log(status);
+        
+      });
+
+    this.loggedIn = this.authService.isAuthenticated()
+    console.log(this.loggedIn);
+    
+
 
   }
   logOut(){
-    this.authService.login("ivan@gmail.com","ivan123").subscribe({
-      next:val=>{
-        alert("uspesno")
-        console.log(val);
-        localStorage.setItem("token",val.token)
-        console.log(localStorage.getItem("token"));
-        
-      },
-      error:err=>{
-        alert("neuspesno")
-      }
-    })
+    this.authService.logOut()
+    this.loggedIn = this.authService.isAuthenticated()
+  }
+
+  ngOnDestroy() {
+    // Unsubscribe from the auth subscription to prevent memory leaks
+    this.authSubscription.unsubscribe();
   }
 
 }

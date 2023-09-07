@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
 import { CarsService } from 'src/app/services/cars.service/cars.service';
+import {Router} from '@angular/router';
+
+import axios from 'axios';
+
+
 
 @Component({
   selector: 'app-home',
@@ -8,12 +13,17 @@ import { CarsService } from 'src/app/services/cars.service/cars.service';
 })
 export class HomeComponent {
 
+
+
+
+  
+
   cars: any[] = []
   currentPage:any
   totalCars!:number
   brojac: number = 625;
   
-  constructor(private carsService:CarsService ){
+  constructor(private carsService:CarsService, private router: Router){
 
   }
 
@@ -42,11 +52,11 @@ export class HomeComponent {
     this.carsService.getCarsForPage(index).subscribe({
       next:val=>{
         this.cars = []
-        console.log(val);
+        // console.log(val);
        
         for(let i=0;i<val.cars.length;i++){
           this.cars.push(val.cars[i])
-          console.log(val.cars[i]);
+          // console.log(val.cars[i]);
         }
         this.totalCars=val.total
       },
@@ -56,4 +66,13 @@ export class HomeComponent {
       }
     })
   }
+  navigateTo(car:any){
+    this.router.navigate([`car/${car}`])
+  }
+
+
+
+
+
+
 }

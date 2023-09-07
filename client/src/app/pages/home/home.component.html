@@ -7,24 +7,24 @@
             SEEEEEEEEEEEEEEEEEARCH
         </div>
     </div>
-    <!-- <button (click)="getCars(brojac)">dvojka</button> -->
-
     <div class="centar">
         <p>Ponuda</p>
     </div>
     <div class="container">
         <div *ngIf="cars!=undefined" class="row">
             <div class="item" *ngFor="let car of cars">
-                <!-- <div class="card">
-                    <p>{{car.Model}}</p>
-                    <p>Slika</p>
-                    <p>Jos neka deskripcija</p>
-                </div> -->
-                <p-card header="Simple Card" [style]="{'width': '250px','height':'200px', 'margin-bottom': '8px'}">
-                    <ng-template pTemplate="header">
-                        <img alt="Card" src="assets/showcase/images/usercard.png">
+                <p-card (click)="navigateTo(car._id)" [style]="{'width': '250px','height':'350px', 'margin-bottom': '8px', 'cursor': 'pointer'}">
+                    <!-- Todo staviti max velicinu title -->
+                    <ng-template pTemplate="title"> 
+                        {{car.Model}}
                     </ng-template>
-                    <p>{{car.Model}} </p>
+                    <ng-template pTemplate="content">
+                        <img alt="Card" class="picture" src="https://sveisvasta.hr/wp-content/uploads/2014/11/7190-jestiva-slika-pokrivka-torta-rodjendan-auto-crveni-sveisvasta.jpg">
+                        
+                    </ng-template>
+                    <ng-template pTemplate="footer" style="margin-top:auto">
+                        <p><b>Cena:</b> {{car.Price}} <b>Godiste:</b> {{car.Year}} </p>
+                    </ng-template>
                 </p-card>
             </div>
 
