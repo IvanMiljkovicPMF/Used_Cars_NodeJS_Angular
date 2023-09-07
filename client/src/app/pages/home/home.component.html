@@ -9,28 +9,30 @@
     </div>
     <!-- <button (click)="getCars(brojac)">dvojka</button> -->
 
-    <div style="display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 10px;">
-        <p>Search neki</p>
+    <div class="centar">
+        <p>Ponuda</p>
     </div>
     <div class="container">
         <div *ngIf="cars!=undefined" class="row">
             <div class="item" *ngFor="let car of cars">
-                <div class="card">
+                <!-- <div class="card">
                     <p>{{car.Model}}</p>
                     <p>Slika</p>
                     <p>Jos neka deskripcija</p>
-                </div>
+                </div> -->
+                <p-card header="Simple Card" [style]="{'width': '250px','height':'200px', 'margin-bottom': '8px'}">
+                    <ng-template pTemplate="header">
+                        <img alt="Card" src="assets/showcase/images/usercard.png">
+                    </ng-template>
+                    <p>{{car.Model}} </p>
+                </p-card>
             </div>
+
         </div>
 
     </div>
-    <div class="centar">
-        <button>levo TODO ikonice</button>
-        <button>desno</button>
-    </div>
+    <p-paginator [rows]="15" [totalRecords]="totalCars" (onPageChange)="changePage($event)"></p-paginator>
+
 
     <div class="centar">
         Logoi nekih 5 6 komada

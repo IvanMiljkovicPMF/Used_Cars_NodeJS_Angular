@@ -9,7 +9,10 @@ let getAllCarsPagination=async(req,res)=>{
 
         const total=await CarServices.countAllObj();
         const cars=await CarServices.pagination(skip,limit);
-        
+        if(!cars)
+        {
+           return res.status(404).json({ error: 'Cars not found' });
+        }
 
         res.status(200).json({cars,total});
 
