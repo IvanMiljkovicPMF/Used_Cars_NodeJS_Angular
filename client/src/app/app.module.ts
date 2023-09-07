@@ -19,6 +19,11 @@ import { CardModule } from 'primeng/card'; // Import CardModule
 import { PaginatorModule } from 'primeng/paginator';
 import { SingleCarComponent } from './pages/single-car/single-car.component';
 
+
+
+import { SliderModule } from 'primeng/slider';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,6 +47,7 @@ import { SingleCarComponent } from './pages/single-car/single-car.component';
     CardModule,
     AppRoutingModule,
     ButtonModule,
+    SliderModule,
     PaginatorModule
   ],
   providers: [],

@@ -13,4 +13,8 @@ export class CarsService {
   getCarsForPage(index: number): Observable<any> {
     return this.httpClient.get<any>(`http://localhost:3000/cars/${index}`)
   }
+
+  getCarWithId(id: string): Observable<any> {
+    return this.httpClient.get<any>(`http://localhost:3000/cars/car/${id}`)
+  }
 }

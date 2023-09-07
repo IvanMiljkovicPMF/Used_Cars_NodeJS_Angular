@@ -1,4 +1,10 @@
-<p>single-car works!</p>
+<div *ngIf="loading">
+</div>
+<div *ngIf="!loading">
+    <h1>{{car.Model}}</h1>
+    <p>{{car.SellerName}}</p>
+    <p>TODO ubaciti podatke i sliku @ivan bek</p>
+</div>
 <!-- 
 <div *ngIf="imageUrl !== null || imageUrl !== undefined">
     <img alt="Card" class="picture" src="{{imageUrl}}">
