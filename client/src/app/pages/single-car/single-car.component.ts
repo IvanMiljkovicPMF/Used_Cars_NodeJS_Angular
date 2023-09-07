@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import axios from 'axios';
+import { CarsService } from 'src/app/services/cars.service/cars.service';
 
 
 @Component({
@@ -12,8 +13,12 @@ import axios from 'axios';
 export class SingleCarComponent {
 
   carId!: string
+  car: any
+  loading: boolean = true
 
-  constructor(private route: ActivatedRoute){
+  constructor(private route: ActivatedRoute,
+    private carsService: CarsService
+    ){
 
   }
   ngOnInit(){
@@ -25,7 +30,18 @@ export class SingleCarComponent {
   }
 
   getCarById(){
-    // carservice.getCarById(id).sub...
+    this.loading = true
+    this.carsService.getCarWithId(this.carId).subscribe({
+      next: val=>{
+        // console.log(val);
+        this.car = val
+        this.loading = false
+      },
+      error: err=>{
+        alert(err)
+        
+      }
+    })
   }
 
 
