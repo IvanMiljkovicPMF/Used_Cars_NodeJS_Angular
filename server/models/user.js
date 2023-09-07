@@ -42,10 +42,10 @@ UserSchema.methods.generateJwt = function()
 UserSchema.methods.getRole = function()
 {
     if (this.admin)
-        return "ADMIN";
+        return 'ADMIN';
     else if(this.vendor)
-        return "VENDOR"
-    return "USER";
+        return 'VENDOR'
+    return 'USER';
 }
 var UserModel=mongoose.model('user',UserSchema)
 
