@@ -33,6 +33,9 @@ import { AddCarComponent } from './pages/add-car/add-car.component';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { PanelModule } from 'primeng/panel';
+import { AddUserComponent } from './pages/add-user/add-user.component';
+import { EditUserComponent } from './pages/edit-user/edit-user.component';
+import { UsersPortalComponent } from './pages/users-portal/users-portal.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +51,10 @@ import { PanelModule } from 'primeng/panel';
     SingleCarComponent,
     CarsPortalComponent,
     EditCarComponent,
-    AddCarComponent
+    AddCarComponent,
+    AddUserComponent,
+    EditUserComponent,
+    UsersPortalComponent
   ],
   imports: [
     BrowserAnimationsModule,

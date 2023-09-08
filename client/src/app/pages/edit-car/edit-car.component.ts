@@ -13,7 +13,9 @@ export class EditCarComponent {
   carId!: string
   car!: Cars
   editedCar!:Cars
+  loading:boolean = true
 
+  // TODO: ovde ubaciti form group jer je najlakse za koristiti GUGLAJ
   constructor(
     private route: ActivatedRoute,
     private carsService: CarsService,
@@ -26,18 +28,17 @@ export class EditCarComponent {
     this.route.paramMap.subscribe(params =>{
       this.carId = params.get('id')!
     })
-    // console.log(this.carId);
     this.getCarById()
   }
 
   getCarById(){
+    this.loading = true
     this.carsService.getCarWithId(this.carId).subscribe({
       next: val=>{
-        console.log(val.car);
         this.car = val.car
-        console.log(this.car);
 
         this.editedCar=this.car
+        this.loading = false
         
       },
       error: err=>{

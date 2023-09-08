@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service/auth.service';
+import { CarsService } from 'src/app/services/cars.service/cars.service';
 
 @Component({
   selector: 'app-navbar',
@@ -21,7 +22,8 @@ export class NavbarComponent {
 
   constructor(
     private authService:AuthService,
-    private router: Router
+    private router: Router,
+    private carsService:CarsService
     ){}
 
   ngOnInit(){
@@ -29,14 +31,14 @@ export class NavbarComponent {
       // Subscribe to the authentication status changes
       this.authSubscription = this.authService.authStatus.subscribe((status: boolean) => {
         this.loggedIn = status;
-        console.log(status);
+        // console.log(status);
         
       });
 
 
 
     this.loggedIn = this.authService.isAuthenticated()
-    console.log(this.loggedIn);
+    // console.log(this.loggedIn);
     
 
 
@@ -59,12 +61,30 @@ export class NavbarComponent {
               },
           ]
       },
+      {
+        label: 'Users Portal',
+        items: [
+            {
+                label: 'All users',
+                command: () => {
+                    this.router.navigate([`users-portal`])
+                  }
+            },
+            {
+                label: 'Add user',
+                command: () => {
+                    this.router.navigate([`add-user`])
+                  }
+            },
+        ]
+    },
   ];
 
   }
   logOut(){
     this.authService.logOut()
     this.loggedIn = this.authService.isAuthenticated()
+    this.carsService.resetHeaders()
   }
 
   ngOnDestroy() {

@@ -163,7 +163,7 @@ export class HomeComponent {
   }
 
   logCars(){
-    console.log(this.cars);
+    // console.log(this.cars);
   }
 
   // 626 je max
@@ -177,16 +177,16 @@ export class HomeComponent {
       next:val=>{
         this.cars = []
         this.bestCars=[]
-        console.log(val);
+        // console.log(val);
 
         for(let i=0;i<val.newCars.length;i++){
           
           this.cars.push(val.newCars[i])
-          this.cars[i].imageUrl = this.get10thCarImage(false,i)
+          this.get10thCarImage(false,i)
         }
         for(let i=0; i<val.bestBuy.length;i++){
           this.bestCars.push(val.bestBuy[i])
-          this.bestCars[i].imageUrl = this.get10thCarImage(true,i)
+          this.get10thCarImage(true,i)
         }
         this.setBestBuyToDisply()
 
@@ -213,7 +213,7 @@ export class HomeComponent {
   async get10thCarImage(best:boolean,i: number): Promise<void> {
 
     const query = `${this.cars[i].Model}+${this.cars[i].Make}+${this.cars[i].Year}`
-    console.log(query);
+    // console.log(query);
     
     try {
       const response = await axios.get(`http://localhost:3000/google-search/search?q=${query}&tbm=isch`);
@@ -236,7 +236,7 @@ export class HomeComponent {
           this.cars[i].imageUrl = imageUrl;
         }
       } else {
-        console.log('10. slika nije pronađena.');
+        // console.log('10. slika nije pronađena.');
         if(best){
           this.bestCars[i].imageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png";
         }
