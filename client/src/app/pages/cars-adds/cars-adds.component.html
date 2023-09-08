@@ -1,1 +1,44 @@
-<p>cars-adds works!</p>
+<div>
+    <div class="centar1">
+        <h1>Search</h1>
+        <div class="card">
+            <label for="modelInput">Unesite naziv modela:</label>
+            <input type="text" id="modelInput" placeholder="Unesite naziv modela">
+            <label for="yearInput">Unesite godinu proizvodnje:</label>
+            <input  type="number" placeholder="Unesite godinu proizvodnje" id="yearInput" name="year" min="1900" max="2099" step="1">
+
+            
+            <h5>Price: {{rangeValues[0] + ' - ' + rangeValues[1]}}</h5>
+            <p-slider [(ngModel)]="rangeValues"[step]="500" [min]="1000" [max]="100000" [range]="true"></p-slider>
+
+            <button class="mt-2" [routerLink]='["/adds"]'>Pretrazi *todo intert icon*</button>
+
+        </div>
+    </div>
+    <p-paginator [rows]="15" [totalRecords]="totalCars" (onPageChange)="changePage($event)"></p-paginator>
+<div *ngIf="loading" class="loading-spinner center mt-5">
+    <div class="spinner"></div>
+  </div>
+<div *ngIf="!loading" class="container mt-2">
+    <div *ngIf="cars!=undefined" class="row">
+        <div class="item" *ngFor="let car of cars">
+            <p-card (click)="navigateTo(car._id)" [style]="{'width': '250px','height':'350px', 'margin-bottom': '8px', 'cursor': 'pointer'}">
+                <!-- Todo staviti max velicinu title -->
+                <ng-template pTemplate="title"> 
+                    {{car.Model}}
+                </ng-template>
+                <ng-template pTemplate="content">
+                    <img alt="{{car.Model}}" class="picture" src="https://sveisvasta.hr/wp-content/uploads/2014/11/7190-jestiva-slika-pokrivka-torta-rodjendan-auto-crveni-sveisvasta.jpg">
+                    
+                </ng-template>
+                <ng-template pTemplate="footer" style="margin-top:auto">
+                    <p><b>Price:</b> {{car.Price}} <b>Year:</b> {{car.Year}} </p>
+                </ng-template>
+            </p-card>
+        </div>
+
+    </div>
+
+</div>
+<p-paginator [rows]="15" [totalRecords]="totalCars" (onPageChange)="changePage($event)"></p-paginator>
+</div>
