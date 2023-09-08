@@ -1,6 +1,53 @@
-<p>Registrovanje </p>
+<form (ngSubmit)="register()" [formGroup]="registerForm" class="formRegister">
+    <p-panel header="Sign In Example">
+        <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    Username:
+                </div>
+                <div class="ui-grid-col-6">
+                    <input pInputText type="text" formControlName="username" class="form-control" name="username">
+                </div>
+                <div class="ui-grid-col-4">
+                    <div [hidden]="registerForm.controls['username'].valid || !registerForm.controls['username'].dirty" class="alert alert-danger">
+                        Login is required
+                    </div>
+                </div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    Email:
+                </div>
+                <div class="ui-grid-col-6">
+                    <input pInputText type="text" formControlName="email" class="form-control" name="email">
+                </div>
+                <div class="ui-grid-col-4">
+                    <div [hidden]="registerForm.controls['email'].valid || !registerForm.controls['email'].dirty" class="alert alert-danger">
+                        Login is required
+                    </div>
+                </div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    Password:
+                </div>
+                <div class="ui-grid-col-6">
+                    <input pInputText type="password" formControlName="password" class="form-control" name="password">
+                </div>
+                <div class="ui-grid-col-4">
+                    <div [hidden]="registerForm.controls['password'].valid || !registerForm.controls['password'].dirty" class="alert alert-danger">
+                        Password is required
+                    </div>
+                </div>
+            </div>
+            <div class="ui-grid-row" id="buttonRegister">
+                <div class="ui-grid-col-2"></div>
+                <div class="ui-grid-col-6">
+                    <button  pButton type="submit" label="Submit" [disabled]="!registerForm.valid"></button>
+                </div>
+                <div class="ui-grid-col-4"></div>
+            </div>
+        </div>
+    </p-panel>
+</form>
 
-<label for="">Email</label> <input type="email" name="" [(ngModel)]="email"><br>
-<label for="">UserName</label> <input type="text" name="" [(ngModel)]="username"><br>
-<label for="">Password</label> <input type="password" name="" [(ngModel)]="password"><br>
-<button (click)="register()">Log in</button>
