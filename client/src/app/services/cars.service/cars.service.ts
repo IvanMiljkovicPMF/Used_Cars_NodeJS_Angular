@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import { CookieService } from 'ngx-cookie-service';
 import { Cars } from 'src/app/models/cars';
+import { UsersService } from '../users.service/users.service';
 
 
 @Injectable({
@@ -14,7 +15,7 @@ export class CarsService {
   token: string = ''
 
 
-  constructor(private httpClient: HttpClient,private cookie:CookieService) { 
+  constructor(private httpClient: HttpClient,private cookie:CookieService, private userService:UsersService) { 
 
     if(this.cookie.get("token")){
       this.headers = new HttpHeaders()
@@ -27,6 +28,7 @@ export class CarsService {
   
   resetHeaders()
   {
+    this.userService.resetHeaders()
     this.headers = new HttpHeaders()
     .set('Content-Type', 'application/json')
     .set('Access-Control-Allow-Origin', '*')

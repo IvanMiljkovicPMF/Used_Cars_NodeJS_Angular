@@ -58,6 +58,7 @@ export class AuthService {
   logOut(){
     this.cookie.delete("token")
     this.authStatusSubject.next(false); // Notify subscribers that the user is logged out
+    
   }
 
 }
