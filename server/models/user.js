@@ -36,6 +36,7 @@ UserSchema.methods.generateJwt = function()
 
     return jwt.sign({
         _id: this._id,
+        role:this.getRole(),
         expire: parseInt(expire.getTime()/1000)
     }, "SECRET")
 }
