@@ -32,13 +32,19 @@ login(){
   this.authService.login(loginData).subscribe({
   next:(token)=>{
     if(token){
-      const getPayload=token.split('.')[1]
-      const payload1=JSON.parse(atob(getPayload))
-      const payload=JSON.parse(token)
-      
-       this.cookie.set("token",payload.token);
-       this.carService.resetHeaders();
-       this.router.navigate(['home'])
+        const getPayload=token.split('.')[1]
+        const payload1=JSON.parse(atob(getPayload))
+
+        console.log(payload1.role);
+        
+
+
+        const payload=JSON.parse(token)
+
+        this.cookie.set("token",payload.token);
+        this.carService.resetHeaders();
+
+        this.router.navigate(['home'])
       }
   },
 

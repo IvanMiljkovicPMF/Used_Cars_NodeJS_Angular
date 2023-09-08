@@ -31,7 +31,7 @@ export class CarsAddsComponent {
   }
 
   logCars(){
-    console.log(this.cars);
+    // console.log(this.cars);
   }
 
   // 626 je max
@@ -52,7 +52,7 @@ export class CarsAddsComponent {
        
         for(let i=0;i<val.cars.length;i++){
           this.cars.push(val.cars[i])
-          this.cars[i].imageUrl = this.get10thCarImage(i)
+          this.get10thCarImage(i)
           // console.log(val.cars[i]);
         }
         this.totalCars=val.total
@@ -72,7 +72,8 @@ export class CarsAddsComponent {
   async get10thCarImage(i: number): Promise<void> {
 
     const query = `${this.cars[i].Model}+${this.cars[i].Make}+${this.cars[i].Year}`
-    console.log(query);
+    // console.log(query);
+
     
     try {
       const response = await axios.get(`http://localhost:3000/google-search/search?q=${query}&tbm=isch`);
@@ -88,7 +89,7 @@ export class CarsAddsComponent {
         // console.log(`URL 10. slike za model "${this.car.Model}": ${imageUrl}`);
         this.cars[i].imageUrl = imageUrl;
       } else {
-        console.log('10. slika nije pronađena.');
+        // console.log('10. slika nije pronađena.');
         this.cars[i].imageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png";
       }
     } catch (error) {

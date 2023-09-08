@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/services/auth.service/auth.service';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { CarsService } from 'src/app/services/cars.service/cars.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -14,7 +15,9 @@ export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
 
   constructor(private authService:AuthService,private cookie: CookieService,
-    private router: Router){}
+    private router: Router,
+    private carService: CarsService
+    ){}
 
 
 
@@ -33,10 +36,21 @@ export class RegisterComponent implements OnInit {
 
     this.authService.register(registerData).subscribe({
 
-      next:(res)=>{
-        if(res){
-          this.cookie.set("token", res);
-          this.router.navigate(['home']);
+      next:(token)=>{
+        if(token){
+          const getPayload=token.split('.')[1]
+          const payload1=JSON.parse(atob(getPayload))
+  
+          console.log(payload1.role);
+          
+  
+  
+          const payload=JSON.parse(token)
+  
+          this.cookie.set("token",payload.token);
+          this.carService.resetHeaders();
+  
+          this.router.navigate(['home'])
         }
        
       },

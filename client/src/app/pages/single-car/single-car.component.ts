@@ -37,9 +37,9 @@ export class SingleCarComponent {
     this.loading = true
     this.carsService.getCarWithId(this.carId).subscribe({
       next: val=>{
-        console.log(val.car);
+        // console.log(val.car);
         this.car = val.car
-        console.log(this.car);
+        // console.log(this.car);
         
         this.loading = false
 
@@ -65,9 +65,9 @@ export class SingleCarComponent {
       if (startIndex !== -1) {
         const endIndex = html.indexOf('"', startIndex);
         this.imageUrl = html.slice(startIndex, endIndex);
-        console.log(`URL 10. slike za model "${this.car.Model}": ${this.imageUrl}`);
+        // console.log(`URL 10. slike za model "${this.car.Model}": ${this.imageUrl}`);
       } else {
-        console.log('10. slika nije pronađena.');
+        // console.log('10. slika nije pronađena.');
       }
     } catch (error) {
       console.error('Greška prilikom pretrage slika:', error);

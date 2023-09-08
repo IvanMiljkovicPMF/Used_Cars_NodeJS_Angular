@@ -13,6 +13,9 @@ import { AuthGuard } from './guards/auth-guard.guard';
 import { CarsPortalComponent } from './pages/cars-portal/cars-portal.component';
 import { EditCarComponent } from './pages/edit-car/edit-car.component';
 import { AddCarComponent } from './pages/add-car/add-car.component';
+import { UsersPortalComponent } from './pages/users-portal/users-portal.component';
+import { EditUserComponent } from './pages/edit-user/edit-user.component';
+import { AddUserComponent } from './pages/add-user/add-user.component';
 
 
 const routes: Routes = [
@@ -29,7 +32,7 @@ const routes: Routes = [
   component:AboutUsComponent,
 },
 {
-  path:'adds',
+  path:'ads',
   component:CarsAddsComponent,
 },
 {
@@ -59,6 +62,21 @@ const routes: Routes = [
 {
   path:'add-car',
   component:AddCarComponent,
+  canActivate:[AuthGuard, AdminGuard]
+},
+{
+  path:'users-portal',
+  component:UsersPortalComponent,
+  canActivate:[AuthGuard, AdminGuard]
+},
+{
+  path:'edit-user/:id',
+  component:EditUserComponent,
+  canActivate:[AuthGuard, AdminGuard]
+},
+{
+  path:'add-user',
+  component:AddUserComponent,
   canActivate:[AuthGuard, AdminGuard]
 },
 {
