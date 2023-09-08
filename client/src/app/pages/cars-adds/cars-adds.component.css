@@ -1,5 +1,5 @@
 .card{
-    height: 200px;
+    height: 240px;
     width: 800px;
     background-color: rgba(237, 237, 237, 0.849);
     border: none;
@@ -69,3 +69,11 @@
     height: 125px;
     animation: spin 1s linear infinite;
   }
+  @keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }   
+}

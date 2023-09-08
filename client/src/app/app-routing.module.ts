@@ -8,6 +8,11 @@ import { RegisterComponent } from './pages/register/register.component';
 import { NoAuthGuard } from './guards/no-auth-guard.guard';
 import { SingleCarComponent } from './pages/single-car/single-car.component';
 import { CarsAddsComponent } from './pages/cars-adds/cars-adds.component';
+import { AdminGuard } from './guards/admin.guard';
+import { AuthGuard } from './guards/auth-guard.guard';
+import { CarsPortalComponent } from './pages/cars-portal/cars-portal.component';
+import { EditCarComponent } from './pages/edit-car/edit-car.component';
+import { AddCarComponent } from './pages/add-car/add-car.component';
 
 
 const routes: Routes = [
@@ -39,7 +44,23 @@ const routes: Routes = [
 {
   path:'register',
   component:RegisterComponent,
-  canActivate:[NoAuthGuard]},
+  canActivate:[NoAuthGuard]
+},
+{
+  path:'cars-portal',
+  component:CarsPortalComponent,
+  canActivate:[AuthGuard, AdminGuard]
+},
+{
+  path:'edit-car/:id',
+  component:EditCarComponent,
+  canActivate:[AuthGuard, AdminGuard]
+},
+{
+  path:'add-car',
+  component:AddCarComponent,
+  canActivate:[AuthGuard, AdminGuard]
+},
 {
   path:'**',
   redirectTo: 'home'

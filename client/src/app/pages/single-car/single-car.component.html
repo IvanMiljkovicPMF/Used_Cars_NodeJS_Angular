@@ -3,7 +3,8 @@
 <div *ngIf="!loading">
     <h1>{{car.Model}}</h1>
     <p>{{car.SellerName}}</p>
-    <p>TODO ubaciti podatke i sliku @ivan bek</p>
+    <img alt="{{car.Model}}" class="picture" src="{{imageUrl}}">
+    <!-- <button (click)="getCarImage()"></button> -->
 </div>
 <!-- 
 <div *ngIf="imageUrl !== null || imageUrl !== undefined">

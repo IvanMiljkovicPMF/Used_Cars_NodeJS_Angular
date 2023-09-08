@@ -19,9 +19,16 @@ import { CardModule } from 'primeng/card'; // Import CardModule
 import { PaginatorModule } from 'primeng/paginator';
 import { SingleCarComponent } from './pages/single-car/single-car.component';
 
-
-
+import { MenuModule } from 'primeng/menu';
 import { SliderModule } from 'primeng/slider';
+import { TableModule } from 'primeng/table';
+import { InputTextModule } from 'primeng/inputtext';
+
+
+
+import { CarsPortalComponent } from './pages/cars-portal/cars-portal.component';
+import { EditCarComponent } from './pages/edit-car/edit-car.component';
+import { AddCarComponent } from './pages/add-car/add-car.component';
 
 
 @NgModule({
@@ -35,7 +42,10 @@ import { SliderModule } from 'primeng/slider';
     CarsAddsComponent,
     NavbarComponent,
     FooterComponent,
-    SingleCarComponent
+    SingleCarComponent,
+    CarsPortalComponent,
+    EditCarComponent,
+    AddCarComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -45,9 +55,12 @@ import { SliderModule } from 'primeng/slider';
     CommonModule,
     FormsModule,
     CardModule,
+    InputTextModule,
+    MenuModule,
     AppRoutingModule,
     ButtonModule,
     SliderModule,
+    TableModule,
     PaginatorModule
   ],
   providers: [],
