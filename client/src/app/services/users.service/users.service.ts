@@ -29,7 +29,7 @@ export class UsersService {
     .set('Authorization', `Bearer ${this.cookie.get("token")}`)
   }
 
-  getUsers():Observable<any>{
+  getUsers():Observable<any>{   
     return this.httpClient.get<any>('http://localhost:3000/users',
     {
       headers:this.headers
