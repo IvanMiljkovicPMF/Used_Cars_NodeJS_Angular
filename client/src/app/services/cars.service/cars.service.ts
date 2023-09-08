@@ -27,6 +27,10 @@ export class CarsService {
       .set('Authorization', `Bearer ${this.token}`)
     }
   }
+  getCarsForHome():Observable<any> {
+    return this.httpClient.get<any>(`http://localhost:3000/home`)
+  }
+
 
   getCarsForPage(index: number): Observable<any> {
     return this.httpClient.get<any>(`http://localhost:3000/cars/${index}`)
@@ -40,10 +44,10 @@ export class CarsService {
     return this.httpClient.get<any>(`http://localhost:3000/google-search?q=${model}+${brand}+${year}`)
   }
 
-  addCar():Observable<any>{
+  addCar(car: Cars):Observable<any>{
     return this.httpClient.post<any>(`http://localhost:3000/profile/add`,
     {
-      //ovde idu atributi
+      car: car
     },
     {
       headers: this.headers
@@ -53,7 +57,7 @@ export class CarsService {
   editCar(car:Cars):Observable<any>{
     return this.httpClient.put<any>(`http://localhost:3000/profile/edit`,
     {
-      car
+      car: car
     },
     {
       headers: this.headers
@@ -65,10 +69,6 @@ export class CarsService {
     {
       headers: this.headers
     })
-  }
-
-  getAllCars():Observable<any>{
-    return this.httpClient.get(`http://localhost:3000/all-cars`)
   }
 
 }
