@@ -7,7 +7,7 @@
             <label for="modelInput">Unesite naziv modela:</label>
             <input type="text" id="modelInput" placeholder="Unesite naziv modela">
             <label for="yearInput">Unesite godinu proizvodnje:</label>
-            <input  type="number" placeholder="Unesite godinu proizvodnje" id="yearInput" name="year" min="1900" max="2099" step="1">
+            <input  type="number" placeholder="Unesite godinu proizvodnje" id="yearInput" name="year" min="1900" max="2023" step="1">
 
             
             <h5>Price: {{rangeValues[0] + ' - ' + rangeValues[1]}}</h5>
@@ -66,15 +66,27 @@
         <h1>Moli se ivan da uradi najprodavanije</h1>
     </div>
     <div class="centar">
-        <!-- Todo promeniti da ovo bude automobili i promeniti funkcije -->
-        <button (click)="moveCompaniesLeft()">Left</button>
-        <div *ngFor="let company of companiesToDisplay">
-            <p-card [style]="{'width': '250px','height':'250px', 'margin': '8px'}">
-                <img alt="{{company.name}}" class="picture" src="{{company.imageUrl}}">
-                <p class="mt-2">{{company.description}}</p>
+        <button (click)="moveBestBuyLeft()">Left</button>
+        <div *ngFor="let car of bestBuyToDisplay">
+            <p-card (click)="navigateTo(car._id)" [style]="{'width': '300px','height':'350px','margin-left':'10px','margin-right':'10px' ,'margin-bottom': '8px', 'cursor': 'pointer'}">
+                <ng-template pTemplate="title"> 
+                    {{car.Model}}
+                </ng-template>
+                <ng-template pTemplate="content">
+                    <!-- <img alt="{{car.Model}}" class="picture" src="https://sveisvasta.hr/wp-content/uploads/2014/11/7190-jestiva-slika-pokrivka-torta-rodjendan-auto-crveni-sveisvasta.jpg"> -->
+                    <img alt="{{car.Model}}" class="picture2" src="{{car.imageUrl}}">
+
+                    
+                </ng-template>
+                <ng-template pTemplate="footer" style="margin-top:auto">
+                    <p class="space-between">
+                        <b>Cena:</b> {{car.Price}} 
+                        <b>Godiste:</b> {{car.Year}} 
+                    </p>
+                </ng-template>
             </p-card>
         </div>
-        <button (click)="moveCompaniesRight()">Right</button>
+        <button (click)="moveBestBuyRight()">Right</button>
     </div>
 
     <div class="centar">

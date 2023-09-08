@@ -1,5 +1,6 @@
 export interface Cars{
     _id: string,
+    imageUrl: string,
 	Year: number,
     Make: string,
     Model: string,
