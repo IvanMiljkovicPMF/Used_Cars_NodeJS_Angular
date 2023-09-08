@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { MenuItem } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service/auth.service';
 
@@ -9,12 +11,18 @@ import { AuthService } from 'src/app/services/auth.service/auth.service';
 })
 export class NavbarComponent {
 
+  items: MenuItem[] | undefined;
+
+
   // TODO get this from localStorage
   loggedIn: boolean = false;
   authSubscription!: Subscription; // Declare an auth subscription
 
 
-  constructor(private authService:AuthService){}
+  constructor(
+    private authService:AuthService,
+    private router: Router
+    ){}
 
   ngOnInit(){
 
@@ -25,10 +33,33 @@ export class NavbarComponent {
         
       });
 
+
+
     this.loggedIn = this.authService.isAuthenticated()
     console.log(this.loggedIn);
     
 
+
+
+    this.items = [
+      {
+          label: 'Cars Portal',
+          items: [
+              {
+                  label: 'All cars',
+                  command: () => {
+                      this.router.navigate([`cars-portal`])
+                    }
+              },
+              {
+                  label: 'Add car',
+                  command: () => {
+                      this.router.navigate([`add-car`])
+                    }
+              },
+          ]
+      },
+  ];
 
   }
   logOut(){

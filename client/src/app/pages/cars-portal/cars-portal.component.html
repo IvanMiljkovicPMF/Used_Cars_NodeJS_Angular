@@ -1,0 +1,33 @@
+<div class="center mt-5">
+    <p-table [value]="allCars" [loading]="loading" >
+        <ng-template pTemplate="caption">
+            <div class="caption">
+                <h1>All cars</h1>
+                <p-button label="Add car" styleClass="p-button-secondary" [routerLink]="'/add-car'"></p-button>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Model</th>
+                <th>Make</th>
+                <th>Yaer</th>
+                <th>Price</th>
+                <th>Options</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-car>
+            <tr>
+                <td>{{ car.Model }}</td>
+                <td>{{ car.Make }}</td>
+                <td>{{ car.Year }}</td>
+                <td>{{ car.Price }}</td>
+                <td>
+                    <p-button pRipple class="me-2" styleClass="p-button-secondary" label="Edit" (click)="navigateToEdit(car._id)"></p-button>
+                    <p-button  pRipple styleClass="p-button-danger" label="Delete" (click)="deleteCar(car._id)"></p-button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+    <p-paginator [rows]="15" [totalRecords]="totalCars" (onPageChange)="changePage($event)"></p-paginator>
+
+</div>

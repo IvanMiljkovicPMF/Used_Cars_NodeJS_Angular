@@ -3,6 +3,9 @@ import { Router } from '@angular/router';
 import { Companies } from 'src/app/models/cars';
 import { CarsService } from 'src/app/services/cars.service/cars.service';
 
+import axios from 'axios';
+
+
 @Component({
   selector: 'app-cars-adds',
   templateUrl: './cars-adds.component.html',
@@ -13,53 +16,6 @@ export class CarsAddsComponent {
   rangeValues: [number,number] = [12000, 50000];
 
   loading: boolean = true;
-
-  leftPointerForCompanies: number = 0;
-  rightPointerForCompanies: number = 2;
-  companiesToDisplay: Companies[] = []
-  // TODO: za Ivana da ubaci kompanije u bazu
-  companies: Companies[] =[
-    {
-      name: 'Toyota',
-      imageUrl: 'https://www.freepnglogos.com/uploads/toyota-logo-png/toyota-logos-brands-logotypes-0.png',
-      description: 'Toyota is a well-known car manufacturer.'
-    },
-    {
-      name: 'Honda',
-      imageUrl: 'https://logohistory.net/wp-content/uploads/2023/01/Honda-Logo.svg',
-      description: 'Honda produces reliable and efficient vehicles.'
-    },
-    {
-      name: 'Ford',
-      imageUrl: 'https://1000logos.net/wp-content/uploads/2018/02/Ford-Logo.png',
-      description: 'Ford is known for its wide range of cars and trucks.'
-    },
-    {
-      name: 'Volkswagen',
-      imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Volkswagen_Logo_till_1995.svg/2048px-Volkswagen_Logo_till_1995.svg.png',
-      description: 'Volkswagen is a popular German automaker.'
-    },
-    {
-      name: 'BMW',
-      imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/BMW.svg/2048px-BMW.svg.png',
-      description: 'BMW produces luxury and high-performance vehicles.'
-    },
-    {
-      name: 'Mercedes-Benz',
-      imageUrl: 'https://logohistory.net/wp-content/uploads/2023/01/Mercedes-Benz-Logo.png',
-      description: 'Mercedes-Benz is a leading luxury car brand.'
-    },
-    {
-      name: 'Tesla',
-      imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/e/e8/Tesla_logo.png',
-      description: 'Tesla is known for its electric and autonomous vehicles.'
-    },
-    {
-      name: 'Chevrolet',
-      imageUrl: 'https://1000logos.net/wp-content/uploads/2019/12/Chevrolet-Logo-2010.png',
-      description: 'Chevrolet offers a variety of cars and trucks.'
-    },
-  ]
 
   cars: any[] = []
   currentPage:any
@@ -72,43 +28,6 @@ export class CarsAddsComponent {
 
   ngOnInit(){
     this.getCars( this.currentPage)
-    
-    this.setCompaniesToDisplay()
-  }
-
-  setCompaniesToDisplay(){
-    for(let i =0;i<3;i++){
-      this.companiesToDisplay.push(this.companies[i])
-    }
-  }
-
-  moveCompaniesLeft(){
-    this.companiesToDisplay.pop()
-    this.leftPointerForCompanies--
-    this.rightPointerForCompanies--;
-
-    if(this.rightPointerForCompanies < 0){
-      this.rightPointerForCompanies=7
-    }
-    if(this.leftPointerForCompanies < 0){
-      this.leftPointerForCompanies=7
-    }
-
-    this.companiesToDisplay.unshift(this.companies[this.leftPointerForCompanies])
-  }
-  moveCompaniesRight(){
-    this.companiesToDisplay.shift()
-    this.leftPointerForCompanies++;
-    this.rightPointerForCompanies++;
-
-    if(this.rightPointerForCompanies > 7){
-      this.rightPointerForCompanies=0
-    }
-    if(this.leftPointerForCompanies > 7){
-      this.leftPointerForCompanies=0
-    }
-
-    this.companiesToDisplay.push(this.companies[this.rightPointerForCompanies])
   }
 
   logCars(){
@@ -133,6 +52,7 @@ export class CarsAddsComponent {
        
         for(let i=0;i<val.cars.length;i++){
           this.cars.push(val.cars[i])
+          this.cars[i].imageUrl = this.get10thCarImage(i)
           // console.log(val.cars[i]);
         }
         this.totalCars=val.total
@@ -147,5 +67,47 @@ export class CarsAddsComponent {
   navigateTo(car:any){
     this.router.navigate([`car/${car}`])
   }
+
+
+  async get10thCarImage(i: number): Promise<void> {
+
+    const query = `${this.cars[i].Model}+${this.cars[i].Make}+${this.cars[i].Year}`
+    console.log(query);
+    
+    try {
+      const response = await axios.get(`http://localhost:3000/google-search/search?q=${query}&tbm=isch`);
+      const html: string = response.data;
+  
+      // Find the 10th occurrence of the image URL string
+      const imageUrlMarker = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9Gc';
+      const startIndex = this.findNthOccurrence(html, imageUrlMarker, 10);
+      
+      if (startIndex !== -1) {
+        const endIndex = html.indexOf('"', startIndex);
+        const imageUrl = html.slice(startIndex, endIndex);
+        // console.log(`URL 10. slike za model "${this.car.Model}": ${imageUrl}`);
+        this.cars[i].imageUrl = imageUrl;
+      } else {
+        console.log('10. slika nije pronađena.');
+        this.cars[i].imageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png";
+      }
+    } catch (error) {
+      console.error('Greška prilikom pretrage slika:', error);
+      this.cars[i].imageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png";
+    }
+  }
+  
+  // Define the findNthOccurrence function within the same class
+  private findNthOccurrence(str: string, substr: string, n: number): number {
+    let currentIndex = -1;
+    for (let i = 0; i < n; i++) {
+      currentIndex = str.indexOf(substr, currentIndex + 1);
+      if (currentIndex === -1) {
+        break;
+      }
+    }
+    return currentIndex;
+  }
+  
 
 }
