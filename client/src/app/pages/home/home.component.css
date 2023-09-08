@@ -42,6 +42,11 @@
     width: 210px;
     object-fit: contain;
   }
+  .picture2{
+    height: 130px;
+    width: 250px;
+    object-fit: contain;
+  }
   ::ng-deep .p-card-body {
     /* Your CSS styles here */
     height: 350px;

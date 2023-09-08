@@ -3,7 +3,7 @@ import { CarsService } from 'src/app/services/cars.service/cars.service';
 import {Router} from '@angular/router';
 
 import axios from 'axios';
-import { Companies } from 'src/app/models/cars';
+import { Cars, Companies } from 'src/app/models/cars';
 
 
 
@@ -19,6 +19,12 @@ export class HomeComponent {
   bestCars: any[] = []
 
   loading: boolean = true;
+
+
+  leftPointerForBestBuy: number = 0;
+  rightPointerForBestBuy: number = 3;
+  totalNumberForBestBuy: number = 0;
+  bestBuyToDisplay: Cars[] = []
 
   leftPointerForCompanies: number = 0;
   rightPointerForCompanies: number = 2;
@@ -80,12 +86,51 @@ export class HomeComponent {
     this.getCars()
     
     this.setCompaniesToDisplay()
+
   }
 
   setCompaniesToDisplay(){
     for(let i =0;i<3;i++){
       this.companiesToDisplay.push(this.companies[i])
     }
+  }
+
+  setBestBuyToDisply(){
+    for(let i=0;i<4;i++){
+      this.bestBuyToDisplay.push(this.bestCars[i])
+    }
+  }
+
+  moveBestBuyLeft(){
+    this.bestBuyToDisplay.pop()
+    this.leftPointerForBestBuy--
+    this.rightPointerForBestBuy--
+
+    if(this.leftPointerForBestBuy < 0){
+      this.leftPointerForBestBuy=this.totalNumberForBestBuy-1
+    }
+    if(this.rightPointerForBestBuy < 0){
+      this.rightPointerForBestBuy=this.totalNumberForBestBuy-1
+    }
+
+    this.bestBuyToDisplay.unshift(this.bestCars[this.leftPointerForBestBuy])
+
+  }
+  moveBestBuyRight(){
+    this.bestBuyToDisplay.shift()
+    this.leftPointerForBestBuy++
+    this.rightPointerForBestBuy++
+
+    if(this.rightPointerForBestBuy > this.totalNumberForBestBuy-1){
+      this.rightPointerForBestBuy=0
+    }
+    if(this.leftPointerForBestBuy > this.totalNumberForBestBuy-1){
+      this.leftPointerForBestBuy=0
+    }
+
+
+    this.bestBuyToDisplay.push(this.bestCars[this.rightPointerForBestBuy])
+
   }
 
   moveCompaniesLeft(){
@@ -143,9 +188,10 @@ export class HomeComponent {
           this.bestCars.push(val.bestBuy[i])
           this.bestCars[i].imageUrl = this.get10thCarImage(true,i)
         }
+        this.setBestBuyToDisply()
 
 
-        this.totalCars=val.bestBuy.length
+        this.totalNumberForBestBuy=val.bestBuy.length
         this.loading = false;
       },
       error:err=>{
@@ -161,63 +207,66 @@ export class HomeComponent {
 
 
 
-async get10thCarImage(best:boolean,i: number): Promise<void> {
 
-  const query = `${this.cars[i].Model}+${this.cars[i].Make}+${this.cars[i].Year}`
-  console.log(query);
-  
-  try {
-    const response = await axios.get(`http://localhost:3000/google-search/search?q=${query}&tbm=isch`);
-    const html: string = response.data;
 
-    // Find the 10th occurrence of the image URL string
-    const imageUrlMarker = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9Gc';
-    const startIndex = this.findNthOccurrence(html, imageUrlMarker, 10);
+
+  async get10thCarImage(best:boolean,i: number): Promise<void> {
+
+    const query = `${this.cars[i].Model}+${this.cars[i].Make}+${this.cars[i].Year}`
+    console.log(query);
     
-    if (startIndex !== -1) {
-      const endIndex = html.indexOf('"', startIndex);
-      const imageUrl = html.slice(startIndex, endIndex);
-      // console.log(`URL 10. slike za model "${this.car.Model}": ${imageUrl}`);
+    try {
+      const response = await axios.get(`http://localhost:3000/google-search/search?q=${query}&tbm=isch`);
+      const html: string = response.data;
 
-      if(best){
-        this.bestCars[i].imageUrl = imageUrl;
+      // Find the 10th occurrence of the image URL string
+      const imageUrlMarker = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9Gc';
+      const startIndex = this.findNthOccurrence(html, imageUrlMarker, 10);
+      
+      if (startIndex !== -1) {
+        const endIndex = html.indexOf('"', startIndex);
+        const imageUrl = html.slice(startIndex, endIndex);
+        // console.log(`URL 10. slike za model "${this.car.Model}": ${imageUrl}`);
 
+        if(best){
+          this.bestCars[i].imageUrl = imageUrl;
+
+        }
+        else{
+          this.cars[i].imageUrl = imageUrl;
+        }
+      } else {
+        console.log('10. slika nije pronađena.');
+        if(best){
+          this.bestCars[i].imageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png";
+        }
+        else{
+        this.cars[i].imageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png";
+        }
       }
-      else{
-        this.cars[i].imageUrl = imageUrl;
-      }
-    } else {
-      console.log('10. slika nije pronađena.');
+    } catch (error) {
+      console.error('Greška prilikom pretrage slika:', error);
       if(best){
         this.bestCars[i].imageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png";
+
       }
       else{
       this.cars[i].imageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png";
+      }  
+    }
+  }
+
+  // Define the findNthOccurrence function within the same class
+  private findNthOccurrence(str: string, substr: string, n: number): number {
+    let currentIndex = -1;
+    for (let i = 0; i < n; i++) {
+      currentIndex = str.indexOf(substr, currentIndex + 1);
+      if (currentIndex === -1) {
+        break;
       }
     }
-  } catch (error) {
-    console.error('Greška prilikom pretrage slika:', error);
-    if(best){
-      this.bestCars[i].imageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png";
-
-    }
-    else{
-    this.cars[i].imageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png";
-    }  
+    return currentIndex;
   }
-}
-
-// Define the findNthOccurrence function within the same class
-private findNthOccurrence(str: string, substr: string, n: number): number {
-  let currentIndex = -1;
-  for (let i = 0; i < n; i++) {
-    currentIndex = str.indexOf(substr, currentIndex + 1);
-    if (currentIndex === -1) {
-      break;
-    }
-  }
-  return currentIndex;
-}
 
 
 }
