@@ -2,6 +2,8 @@
     <div class="centar1">
         <h1>Search</h1>
         <div class="card">
+            <label for="makeInput">Unesite naziv marke:</label>
+            <input type="text" id="makeInput" placeholder="Unesite naziv marke">
             <label for="modelInput">Unesite naziv modela:</label>
             <input type="text" id="modelInput" placeholder="Unesite naziv modela">
             <label for="yearInput">Unesite godinu proizvodnje:</label>
@@ -15,7 +17,7 @@
 
         </div>
     </div>
-    <p-paginator [rows]="15" [totalRecords]="totalCars" (onPageChange)="changePage($event)"></p-paginator>
+    <!-- <p-paginator [rows]="15" [totalRecords]="totalCars" (onPageChange)="changePage($event)"></p-paginator> -->
 <div *ngIf="loading" class="loading-spinner center mt-5">
     <div class="spinner"></div>
   </div>
@@ -28,7 +30,7 @@
                     {{car.Model}}
                 </ng-template>
                 <ng-template pTemplate="content">
-                    <img alt="{{car.Model}}" class="picture" src="https://sveisvasta.hr/wp-content/uploads/2014/11/7190-jestiva-slika-pokrivka-torta-rodjendan-auto-crveni-sveisvasta.jpg">
+                    <img alt="{{car.Model}}" class="picture" src="{{car.imageUrl}}">
                     
                 </ng-template>
                 <ng-template pTemplate="footer" style="margin-top:auto">

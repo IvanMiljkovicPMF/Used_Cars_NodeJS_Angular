@@ -2,6 +2,8 @@
     <div class="centar1">
         <h1>Search</h1>
         <div class="card">
+            <label for="makeInput">Unesite naziv marke:</label>
+            <input type="text" id="makeInput" placeholder="Unesite naziv marke">
             <label for="modelInput">Unesite naziv modela:</label>
             <input type="text" id="modelInput" placeholder="Unesite naziv modela">
             <label for="yearInput">Unesite godinu proizvodnje:</label>
@@ -30,7 +32,9 @@
                         {{car.Model}}
                     </ng-template>
                     <ng-template pTemplate="content">
-                        <img alt="{{car.Model}}" class="picture" src="https://sveisvasta.hr/wp-content/uploads/2014/11/7190-jestiva-slika-pokrivka-torta-rodjendan-auto-crveni-sveisvasta.jpg">
+                        <!-- <img alt="{{car.Model}}" class="picture" src="https://sveisvasta.hr/wp-content/uploads/2014/11/7190-jestiva-slika-pokrivka-torta-rodjendan-auto-crveni-sveisvasta.jpg"> -->
+                        <img alt="{{car.Model}}" class="picture" src="{{car.imageUrl}}">
+
                         
                     </ng-template>
                     <ng-template pTemplate="footer" style="margin-top:auto">
@@ -74,7 +78,7 @@
     </div>
 
     <div class="centar">
-        Random hardkodovano govno
+       <h1>Vesti hardokdovati</h1>
     </div>
 
 </div>

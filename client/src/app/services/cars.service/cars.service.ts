@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import { CookieService } from 'ngx-cookie-service';
+import { Cars } from 'src/app/models/cars';
 
 
 @Injectable({
@@ -8,7 +10,23 @@ import {HttpClient} from "@angular/common/http";
 })
 export class CarsService {
 
-  constructor(private httpClient: HttpClient) { }
+  private headers
+  token: string = ''
+
+
+  constructor(private httpClient: HttpClient,private cookie:CookieService) { 
+
+    if (localStorage.getItem("token") !== null) {
+      this.token =this.cookie.get("token")
+    }
+
+    if(this.token!==''){
+      this.headers = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Access-Control-Allow-Origin', '*')
+      .set('Authorization', `Bearer ${this.token}`)
+    }
+  }
 
   getCarsForPage(index: number): Observable<any> {
     return this.httpClient.get<any>(`http://localhost:3000/cars/${index}`)
@@ -17,4 +35,40 @@ export class CarsService {
   getCarWithId(id: string): Observable<any> {
     return this.httpClient.get<any>(`http://localhost:3000/cars/car/${id}`)
   }
+
+  getCarImage(model: string, brand: string, year:string): Observable<any>{
+    return this.httpClient.get<any>(`http://localhost:3000/google-search?q=${model}+${brand}+${year}`)
+  }
+
+  addCar():Observable<any>{
+    return this.httpClient.post<any>(`http://localhost:3000/profile/add`,
+    {
+      //ovde idu atributi
+    },
+    {
+      headers: this.headers
+    })
+  }
+
+  editCar(car:Cars):Observable<any>{
+    return this.httpClient.put<any>(`http://localhost:3000/profile/edit`,
+    {
+      car
+    },
+    {
+      headers: this.headers
+    })
+  }
+
+  deleteCar(id:string):Observable<any>{
+    return this.httpClient.delete<any>(`http://localhost:3000/profile/delete/${id}`,
+    {
+      headers: this.headers
+    })
+  }
+
+  getAllCars():Observable<any>{
+    return this.httpClient.get(`http://localhost:3000/all-cars`)
+  }
+
 }
