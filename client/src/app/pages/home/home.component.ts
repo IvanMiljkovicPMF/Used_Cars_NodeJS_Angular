@@ -16,6 +16,8 @@ export class HomeComponent {
 
   rangeValues: [number,number] = [12000, 50000];
 
+  bestCars: any[] = []
+
   loading: boolean = true;
 
   leftPointerForCompanies: number = 0;
@@ -75,7 +77,7 @@ export class HomeComponent {
   }
 
   ngOnInit(){
-    this.getCars( this.currentPage)
+    this.getCars()
     
     this.setCompaniesToDisplay()
   }
@@ -123,24 +125,27 @@ export class HomeComponent {
 
   //TODO: bearer token!!!!!!!!
 
-  changePage(event:any){
-    this.currentPage = event.page + 1; 
-    this.getCars(this.currentPage);
-  }
 
-  getCars(index:number){
+  getCars(){
     this.loading = true
-    this.carsService.getCarsForPage(index).subscribe({
+    this.carsService.getCarsForHome().subscribe({
       next:val=>{
         this.cars = []
+        this.bestCars=[]
         console.log(val);
 
-        for(let i=0;i<val.cars.length;i++){
+        for(let i=0;i<val.newCars.length;i++){
           
-          this.cars.push(val.cars[i])
-          this.cars[i].imageUrl = this.get10thCarImage(i)
+          this.cars.push(val.newCars[i])
+          this.cars[i].imageUrl = this.get10thCarImage(false,i)
         }
-        this.totalCars=val.total
+        for(let i=0; i<val.bestBuy.length;i++){
+          this.bestCars.push(val.bestBuy[i])
+          this.bestCars[i].imageUrl = this.get10thCarImage(true,i)
+        }
+
+
+        this.totalCars=val.bestBuy.length
         this.loading = false;
       },
       error:err=>{
@@ -156,7 +161,7 @@ export class HomeComponent {
 
 
 
-async get10thCarImage(i: number): Promise<void> {
+async get10thCarImage(best:boolean,i: number): Promise<void> {
 
   const query = `${this.cars[i].Model}+${this.cars[i].Make}+${this.cars[i].Year}`
   console.log(query);
@@ -173,14 +178,32 @@ async get10thCarImage(i: number): Promise<void> {
       const endIndex = html.indexOf('"', startIndex);
       const imageUrl = html.slice(startIndex, endIndex);
       // console.log(`URL 10. slike za model "${this.car.Model}": ${imageUrl}`);
-      this.cars[i].imageUrl = imageUrl;
+
+      if(best){
+        this.bestCars[i].imageUrl = imageUrl;
+
+      }
+      else{
+        this.cars[i].imageUrl = imageUrl;
+      }
     } else {
       console.log('10. slika nije pronađena.');
+      if(best){
+        this.bestCars[i].imageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png";
+      }
+      else{
       this.cars[i].imageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png";
+      }
     }
   } catch (error) {
     console.error('Greška prilikom pretrage slika:', error);
+    if(best){
+      this.bestCars[i].imageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png";
+
+    }
+    else{
     this.cars[i].imageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png";
+    }  
   }
 }
 
