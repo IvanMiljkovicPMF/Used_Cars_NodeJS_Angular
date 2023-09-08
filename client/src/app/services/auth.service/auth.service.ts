@@ -24,7 +24,17 @@ export class AuthService {
 
   register(register:Login):Observable<any>{
 
-    return this.http.post(`${this.backendUrl}/auth/register`,register,{responseType:'text'})
+    return this.http.post(`${this.backendUrl}/auth/register`,register,{responseType:'text'}).pipe(
+      map((response: string) => {
+        // Assuming your login API sets the token cookie upon successful login
+        if (response) {
+          this.authStatusSubject.next(true); // Notify subscribers that the user is logged in
+          // console.log("uso sam ovde");
+          
+        }      
+        return response;
+      })
+    );
     
   }
 
@@ -34,7 +44,7 @@ export class AuthService {
         // Assuming your login API sets the token cookie upon successful login
         if (response) {
           this.authStatusSubject.next(true); // Notify subscribers that the user is logged in
-          console.log("uso sam ovde");
+          // console.log("uso sam ovde");
           
         }      
         return response;
