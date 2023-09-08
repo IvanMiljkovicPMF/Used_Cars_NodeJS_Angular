@@ -9,6 +9,7 @@ mongoose.connect(config.dbConnection)
 
 const carRoute=require('./routes/carsRoute')
 const authRoutes = require('./routes/authRoute')
+const usersRoutes = require('./routes/usersRoute')
 
 app.use(express.json())
 app.use(cors())
@@ -16,6 +17,7 @@ app.use(cors())
 app.use('/home',carRoute)
 app.use('/cars',carRoute)
 app.use('/profile',carRoute)
+app.use('/users',usersRoutes)
 app.use("/auth",authRoutes)
 
 

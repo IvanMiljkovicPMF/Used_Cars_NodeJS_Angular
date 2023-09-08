@@ -3,6 +3,7 @@ let CarController=require('../controllers/carController')
 let express = require('express')
 let router = express.Router()
 let passport = require('../middleware/passport')
+
 router.get('/:page',CarController.getAllCarsPagination)
 
 router.get('/',CarController.getCars)

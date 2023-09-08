@@ -18,6 +18,22 @@ let login = async (req,res)=>{
         "token":req.user.generateJwt()
     })
 }
+let getAllUsers = async(req, res) =>{
+  try {
+    const users=await UserServices.getAllUsers();
+    if(!users)
+    {
+       return res.status(404).json({ error: 'Cars not found' });
+    }
+
+    res.status(200).json({users});
+
+    
+} catch (error) {
+    console.log(error);
+    return res.status(500).json({msg:"HTTP 500 error"})
+}
+}
 module.exports={
-    register,login
+    register,login,getAllUsers
 }
