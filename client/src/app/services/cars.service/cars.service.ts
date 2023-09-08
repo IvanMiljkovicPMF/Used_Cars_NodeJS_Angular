@@ -16,17 +16,23 @@ export class CarsService {
 
   constructor(private httpClient: HttpClient,private cookie:CookieService) { 
 
-    if (localStorage.getItem("token") !== null) {
-      this.token =this.cookie.get("token")
-    }
-
-    if(this.token!==''){
+    if(this.cookie.get("token")){
       this.headers = new HttpHeaders()
       .set('Content-Type', 'application/json')
       .set('Access-Control-Allow-Origin', '*')
-      .set('Authorization', `Bearer ${this.token}`)
+      .set('Authorization', `Bearer ${this.cookie.get("token")}`)
     }
   }
+
+  
+  resetHeaders()
+  {
+    this.headers = new HttpHeaders()
+    .set('Content-Type', 'application/json')
+    .set('Access-Control-Allow-Origin', '*')
+    .set('Authorization', `Bearer ${this.cookie.get("token")}`)
+  }
+
   getCarsForHome():Observable<any> {
     return this.httpClient.get<any>(`http://localhost:3000/home`)
   }
@@ -65,6 +71,7 @@ export class CarsService {
   }
 
   deleteCar(id:string):Observable<any>{
+
     return this.httpClient.delete<any>(`http://localhost:3000/profile/delete/${id}`,
     {
       headers: this.headers
