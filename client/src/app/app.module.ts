@@ -11,10 +11,11 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import{HttpClientModule}from '@angular/common/http'
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ButtonModule } from 'primeng/button';
+
 import { CardModule } from 'primeng/card'; // Import CardModule
 import { PaginatorModule } from 'primeng/paginator';
 import { SingleCarComponent } from './pages/single-car/single-car.component';
@@ -22,14 +23,16 @@ import { SingleCarComponent } from './pages/single-car/single-car.component';
 import { MenuModule } from 'primeng/menu';
 import { SliderModule } from 'primeng/slider';
 import { TableModule } from 'primeng/table';
-import { InputTextModule } from 'primeng/inputtext';
+
 
 
 
 import { CarsPortalComponent } from './pages/cars-portal/cars-portal.component';
 import { EditCarComponent } from './pages/edit-car/edit-car.component';
 import { AddCarComponent } from './pages/add-car/add-car.component';
-
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
+import { PanelModule } from 'primeng/panel';
 
 @NgModule({
   declarations: [
@@ -61,7 +64,9 @@ import { AddCarComponent } from './pages/add-car/add-car.component';
     ButtonModule,
     SliderModule,
     TableModule,
-    PaginatorModule
+    PaginatorModule,
+    ReactiveFormsModule,
+    PanelModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
