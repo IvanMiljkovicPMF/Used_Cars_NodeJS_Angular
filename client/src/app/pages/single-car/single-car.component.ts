@@ -68,8 +68,12 @@ export class SingleCarComponent {
         // console.log(`URL 10. slike za model "${this.car.Model}": ${this.imageUrl}`);
       } else {
         // console.log('10. slika nije pronađena.');
+        this.imageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png";
+
       }
     } catch (error) {
+      this.imageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png";
+
       console.error('Greška prilikom pretrage slika:', error);
     }
   }

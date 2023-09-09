@@ -5,9 +5,9 @@
     border: none;
     border-radius: 5;
 }
-.container{
+/* .container{
     display: flex;
-}
+} */
 
 .row {
     display: flex;
@@ -38,20 +38,34 @@
     margin-top: 10px;
   }
   .picture{
-    height: 130px;
-    width: 210px;
+    height: 330px;
+    width: 510px;
     object-fit: contain;
   }
-  ::ng-deep .p-card-body {
-    /* Your CSS styles here */
-    height: 350px;
+  .right-side-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
   }
-  ::ng-deep .p-card-title {
-    /* Your CSS styles here */
-    height: 100px;
+  .cardd{
+    width: 750px;
+    height: 450px;
+    margin-bottom: 8px;
+    cursor: pointer
   }
-  ::ng-deep .p-card-footer{
-    margin-top: auto
+  /* content{
+    display: flex;
+    justify-content: flex-start;
+  } */
+  
+  ::ng-deep .p-card-content {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  ::ng-deep .row .ng-star-inserted{
+    display: flex;
+    justify-content: center;
   }
 
   .loading-spinner {
