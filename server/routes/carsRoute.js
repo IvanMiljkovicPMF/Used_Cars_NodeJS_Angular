@@ -14,7 +14,6 @@ router.post('/add',
                     passport.authenticate('jwt', {session: false}), 
                     passport.authorizeRoles('ADMIN','VENDOR'),
                     CarController.saveCar
-
                     )
 
 router.put('/edit', 

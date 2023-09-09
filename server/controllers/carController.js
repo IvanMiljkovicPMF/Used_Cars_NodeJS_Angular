@@ -6,9 +6,32 @@ let getAllCarsPagination=async(req,res)=>{
         const limit=15;
         const page=req.params.page;
         const skip=(page-1)*limit
+        const { model, make, minPrice, maxPrice, year } = req.query;
 
-        const total=await CarServices.countAllObj();
-        const cars=await CarServices.pagination(skip,limit);
+        const filter = {};
+        if (model) {
+          filter.Model = model;
+        }
+        if (make) {
+          filter.Make = make;
+        }
+        if (minPrice) {
+          // Convert minPrice to an integer
+          filter.Price = { $gte: parseInt(minPrice) };
+        }
+        if (maxPrice) {
+          // Convert maxPrice to an integer
+          filter.Price = {
+            ...filter.price,
+            $lte: parseInt(maxPrice),
+          };
+        }
+        if (year) {
+          filter.Year = year;
+        }
+
+        const total=await CarServices.countAllObj(filter);
+        const cars=await CarServices.pagination(skip, limit, filter);
         if(!cars)
         {
            return res.status(404).json({ error: 'Cars not found' });
