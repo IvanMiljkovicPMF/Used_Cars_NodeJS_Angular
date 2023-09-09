@@ -197,15 +197,15 @@ export class HomeComponent {
         for(let i=0;i<val.newCars.length;i++){
           
           this.cars.push(val.newCars[i])
-          this.cars[i].imageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png";
+          // this.cars[i].imageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png";
 
-          // this.get10thCarImage(false,i)
+          this.get10thCarImage(false,i)
         }
         for(let i=0; i<val.bestBuy.length;i++){
           this.bestCars.push(val.bestBuy[i])
-          this.bestCars[i].imageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png";
+          // this.bestCars[i].imageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png";
 
-          // this.get10thCarImage(true,i)
+          this.get10thCarImage(true,i)
         }
         this.setBestBuyToDisply()
 
