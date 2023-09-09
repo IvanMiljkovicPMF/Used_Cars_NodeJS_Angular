@@ -23,6 +23,7 @@ import { SingleCarComponent } from './pages/single-car/single-car.component';
 import { MenuModule } from 'primeng/menu';
 import { SliderModule } from 'primeng/slider';
 import { TableModule } from 'primeng/table';
+import {InputNumberModule} from 'primeng/inputnumber';
 
 
 
@@ -71,6 +72,7 @@ import { UsersPortalComponent } from './pages/users-portal/users-portal.componen
     SliderModule,
     TableModule,
     PaginatorModule,
+    InputNumberModule,
     ReactiveFormsModule,
     PanelModule,
   ],

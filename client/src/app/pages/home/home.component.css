@@ -82,3 +82,31 @@
         transform: rotate(360deg);
     }   
 }
+
+.up-text{
+  display: flex;
+  justify-content: space-around;
+}
+.left-text{
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+.right-text{
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+}
+.center-text{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.sirina{
+  width: 636px;
+}
+.search-button{
+  display: flex;
+  justify-content: center;
+  
+}

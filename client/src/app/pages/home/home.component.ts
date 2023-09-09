@@ -20,6 +20,11 @@ export class HomeComponent {
 
   loading: boolean = true;
 
+  year!: number 
+  model: string = ''
+  make: string = ''
+
+
 
   leftPointerForBestBuy: number = 0;
   rightPointerForBestBuy: number = 3;
@@ -87,6 +92,16 @@ export class HomeComponent {
     
     this.setCompaniesToDisplay()
 
+  }
+
+  navigateToAds(){ 
+    this.router.navigate(['/ads'],{ queryParams: {
+      model: this.model !== '' ? this.model : undefined,
+      year: this.year, 
+      make: this.make  !== '' ? this.make : undefined,
+      minPrice: this.rangeValues[0],
+      maxPrice: this.rangeValues[1]
+    }})
   }
 
   setCompaniesToDisplay(){
@@ -182,11 +197,15 @@ export class HomeComponent {
         for(let i=0;i<val.newCars.length;i++){
           
           this.cars.push(val.newCars[i])
-          this.get10thCarImage(false,i)
+          this.cars[i].imageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png";
+
+          // this.get10thCarImage(false,i)
         }
         for(let i=0; i<val.bestBuy.length;i++){
           this.bestCars.push(val.bestBuy[i])
-          this.get10thCarImage(true,i)
+          this.bestCars[i].imageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png";
+
+          // this.get10thCarImage(true,i)
         }
         this.setBestBuyToDisply()
 
