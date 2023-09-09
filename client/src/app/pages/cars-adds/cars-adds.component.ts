@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Companies } from 'src/app/models/cars';
 import { CarsService } from 'src/app/services/cars.service/cars.service';
 
 import axios from 'axios';
+import { HttpParams } from '@angular/common/http';
 
 
 @Component({
@@ -18,29 +19,147 @@ export class CarsAddsComponent {
   loading: boolean = true;
 
   cars: any[] = []
-  currentPage:any
+  currentPage:number = 1
   totalCars!:number
   brojac: number = 625;
   
-  constructor(private carsService:CarsService, private router: Router){
+  year!:number
+  model: string =''
+  make: string =''
+
+  query: string = ''
+  
+
+  constructor(
+    private carsService:CarsService, 
+    private router: Router,
+    private route: ActivatedRoute
+    ){
 
   }
 
   ngOnInit(){
-    this.getCars( this.currentPage)
+    const queryParams = this.route.snapshot.queryParamMap;
+
+    const model = queryParams.has('model') ? queryParams.get('model') : '';
+    const year = queryParams.has('year') ? queryParams.get('year') : '';
+    const make = queryParams.has('make') ? queryParams.get('make') : '';
+    const minPrice = queryParams.has('minPrice') ? queryParams.get('minPrice') : '';
+    const maxPrice = queryParams.has('maxPrice') ? queryParams.get('maxPrice') : '';
+
+    // Create a new HttpParams object
+    let params = new HttpParams();
+
+    // Add query parameters if they have values
+    if (model) {
+      params = params.set('model', model);
+    }
+
+    if (year) {
+      params = params.set('year', year);
+    }
+
+    if (make) {
+      params = params.set('make', make);
+    }
+
+    if (minPrice) {
+      params = params.set('minPrice', minPrice.toString());
+    }
+
+    if (maxPrice) {
+      params = params.set('maxPrice', maxPrice.toString());
+    }
+
+    // Convert the HttpParams object to a string
+    const queryString = params.toString();
+
+    if(queryString){
+      // console.log(queryString);
+      console.log(queryString);
+      this.query = queryString
+      
+      this.getCarsWithParams( this.currentPage, queryString)
+    }
+    else{
+      this.getCars( this.currentPage)
+    }
   }
 
   logCars(){
     // console.log(this.cars);
   }
 
+  getCarsParams(){
+    // Create a new HttpParams object
+    let params = new HttpParams();
+
+    // Add query parameters if they have values
+    if (this.model) {
+      params = params.set('model', this.model);
+    }
+
+    if (this.year) {
+      params = params.set('year', this.year);
+    }
+
+    if (this.make) {
+      params = params.set('make', this.make);
+    }
+
+    params = params.set('minPrice', this.rangeValues[0].toString());
+    params = params.set('maxPrice', this.rangeValues[1].toString());
+  
+
+    // Convert the HttpParams object to a string
+    const queryString = params.toString();
+
+    this.query = queryString
+
+
+    // console.log(queryString);
+    this.currentPage =1;
+    this.getCarsWithParams( this.currentPage, queryString)
+    
+  }
   // 626 je max
 
   //TODO: bearer token!!!!!!!!
+  getCarsWithParams(index:number,query: string){
+    this.loading = true
+    this.carsService.getCarsForPageWithParams(index,query).subscribe({
+      next:val=>{
+        this.cars = []
+        console.log(val);
+       
+        for(let i=0;i<val.cars.length;i++){
+          this.cars.push(val.cars[i])
+          this.cars[i].imageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png";
+
+
+          // this.get10thCarImage(i)
+          
+        }
+        this.totalCars=val.total
+        this.loading = false;
+      },
+      error:err=>{
+        console.log(err);
+        
+      }
+    })
+  }
+
 
   changePage(event:any){
     this.currentPage = event.page + 1; 
-    this.getCars(this.currentPage);
+    if(this.query){
+      this.getCarsWithParams(this.currentPage,this.query);
+
+    }
+    else{
+      this.getCars(this.currentPage);
+    }
   }
 
   getCars(index:number){
@@ -52,8 +171,11 @@ export class CarsAddsComponent {
        
         for(let i=0;i<val.cars.length;i++){
           this.cars.push(val.cars[i])
-          this.get10thCarImage(i)
-          // console.log(val.cars[i]);
+          this.cars[i].imageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png";
+
+
+          // this.get10thCarImage(i)
+          
         }
         this.totalCars=val.total
         this.loading = false;

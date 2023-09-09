@@ -5,7 +5,7 @@ export interface Cars{
     Make: string,
     Model: string,
     UsedNew: string,
-    Price: string,
+    Price: number,
     ConsumerRating: number,
     ConsumerReviews: number,
     SellerType: string,

@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import axios from 'axios';
+import { CookieService } from 'ngx-cookie-service';
 import { CarsService } from 'src/app/services/cars.service/cars.service';
 
 
@@ -20,8 +21,11 @@ export class SingleCarComponent {
 
   loading: boolean = true
 
-  constructor(private route: ActivatedRoute,
-    private carsService: CarsService
+  constructor(
+    private route: ActivatedRoute,
+    private carsService: CarsService,
+    private router: Router,
+    private cookie:CookieService
     ){
 
   }
@@ -90,5 +94,23 @@ export class SingleCarComponent {
     return currentIndex;
   }
 
+  checkIfVendor(){
+    if(this.cookie.get('role') === "VENDOR")
+    {
+      return true
+    }
+    return false;  
+  }
+  buyCar(){
+    this.carsService.deleteCar(this.carId).subscribe({
+      next:val=>{
+        console.log(val);
+        this.router.navigate([`ads`])
+      },
+      error:err=>{
+        console.log(err);
+      }
+    })
+  }
 
 }

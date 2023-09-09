@@ -36,7 +36,8 @@ login(){
         const payload1=JSON.parse(atob(getPayload))
 
         console.log(payload1.role);
-        
+        this.cookie.set("role",payload1.role);
+
 
 
         const payload=JSON.parse(token)

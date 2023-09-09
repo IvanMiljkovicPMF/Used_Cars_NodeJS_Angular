@@ -23,6 +23,7 @@ import { SingleCarComponent } from './pages/single-car/single-car.component';
 import { MenuModule } from 'primeng/menu';
 import { SliderModule } from 'primeng/slider';
 import { TableModule } from 'primeng/table';
+import {InputNumberModule} from 'primeng/inputnumber';
 
 
 
@@ -36,6 +37,7 @@ import { PanelModule } from 'primeng/panel';
 import { AddUserComponent } from './pages/add-user/add-user.component';
 import { EditUserComponent } from './pages/edit-user/edit-user.component';
 import { UsersPortalComponent } from './pages/users-portal/users-portal.component';
+
 
 @NgModule({
   declarations: [
@@ -71,6 +73,7 @@ import { UsersPortalComponent } from './pages/users-portal/users-portal.componen
     SliderModule,
     TableModule,
     PaginatorModule,
+    InputNumberModule,
     ReactiveFormsModule,
     PanelModule,
   ],
