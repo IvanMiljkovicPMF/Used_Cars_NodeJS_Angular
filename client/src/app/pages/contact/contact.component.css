@@ -16,10 +16,10 @@
 }
 #menu1{
     margin-top: 10px;
-   margin-bottom: 100px;
+    margin-bottom: 100px;
+    display: flex; flex-direction: row;
 }
 #menu {
-    
     width: 500px;
     
 }
@@ -31,9 +31,10 @@
 #images1 img{
     width: 800px;
     height: 500px;
-    float: right;
-    position: relative;
-    bottom: 500px;
+    /* float: right; */
+    /* position: relative; */
+    flex: 1;
+    margin-top: 100px;
 }
 
 #forma{
