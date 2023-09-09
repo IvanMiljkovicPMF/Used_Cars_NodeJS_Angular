@@ -7,28 +7,27 @@ let getAllCarsPagination=async(req,res)=>{
         const page=req.params.page;
         const skip=(page-1)*limit
         const { model, make, minPrice, maxPrice, year } = req.query;
-
+        
         const filter = {};
+
         if (model) {
           filter.Model = model;
         }
         if (make) {
           filter.Make = make;
         }
-        if (minPrice) {
-          // Convert minPrice to an integer
-          filter.Price = { $gte: parseInt(minPrice) };
-        }
-        if (maxPrice) {
-          // Convert maxPrice to an integer
+        if (minPrice && maxPrice) {
+          // Convert minPrice and maxPrice to Int32
           filter.Price = {
-            ...filter.price,
+            $gte: parseInt(minPrice),
             $lte: parseInt(maxPrice),
           };
         }
         if (year) {
           filter.Year = year;
         }
+
+    
 
         const total=await CarServices.countAllObj(filter);
         const cars=await CarServices.pagination(skip, limit, filter);
