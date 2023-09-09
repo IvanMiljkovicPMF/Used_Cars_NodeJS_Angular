@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { MenuItem } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service/auth.service';
@@ -23,7 +24,8 @@ export class NavbarComponent {
   constructor(
     private authService:AuthService,
     private router: Router,
-    private carsService:CarsService
+    private carsService:CarsService,
+    private cookie:CookieService
     ){}
 
   ngOnInit(){
@@ -85,11 +87,20 @@ export class NavbarComponent {
     this.authService.logOut()
     this.loggedIn = this.authService.isAuthenticated()
     this.carsService.resetHeaders()
+    this.router.navigate([`home`])
   }
 
   ngOnDestroy() {
     // Unsubscribe from the auth subscription to prevent memory leaks
     this.authSubscription.unsubscribe();
+  }
+
+  checkIfAdmin(){
+    if(this.cookie.get('role') === "ADMIN")
+    {
+      return true
+    }
+    return false;  
   }
 
 }
