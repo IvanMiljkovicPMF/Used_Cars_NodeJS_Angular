@@ -1,0 +1,81 @@
+#container{
+    margin:auto;
+    position: relative;
+    top: 15px;
+    width:1300px;
+  
+   
+}
+#heder{
+    width: 100%;
+    height:300px ;
+}
+#heder img{
+    width: 100%;
+    height: 100%;
+}
+#menu1{
+    margin-top: 10px;
+   margin-bottom: 100px;
+}
+#menu {
+    
+    width: 500px;
+    
+}
+.p1{
+
+    font-size: 20px;
+   
+}
+#images1 img{
+    width: 800px;
+    height: 500px;
+    float: right;
+    position: relative;
+    bottom: 500px;
+}
+
+#forma{
+    font-size: 20px;
+     width: 500px;
+
+    
+}
+#forma input{
+    width: 300px;
+    height: 30px;
+    border: 4px solid black; 
+  font-size: 16px;
+}
+
+#forma input:focus{
+   border-color:orange;
+}
+
+#forma select{
+    width: 300px;
+    height: 30px;
+    border: 3px solid black;
+
+  font-size: 16px;
+}
+#forma select:focus{
+    border-color:orange;
+ }
+
+ textarea{
+    border: 5px solid black; 
+}
+textarea:focus{
+    border-color: orange;
+}
+#forma button{
+
+    position: relative;
+    left: 100px;
+    background-color:orange;
+    border-radius: 10px;
+    width: 100px;
+    height: 50px;
+}
