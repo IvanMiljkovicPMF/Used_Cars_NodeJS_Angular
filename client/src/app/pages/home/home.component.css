@@ -47,16 +47,17 @@
     width: 250px;
     object-fit: contain;
   }
-  ::ng-deep .p-card-body {
-    /* Your CSS styles here */
+  ::ng-deep .carnew .p-card-body {
     height: 350px;
+    text-align: center;
   }
-  ::ng-deep .p-card-title {
-    /* Your CSS styles here */
-    height: 100px;
+  ::ng-deep .carnew .p-card-title {
+    height: 80px;
+    text-align: center;
   }
-  ::ng-deep .p-card-footer{
-    margin-top: auto
+  ::ng-deep .carnew .p-card-footer{
+    margin-top: auto;
+    text-align: center;
   }
 
   .loading-spinner {

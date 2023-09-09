@@ -27,8 +27,6 @@ let getAllCarsPagination=async(req,res)=>{
           filter.Year = year;
         }
 
-    
-
         const total=await CarServices.countAllObj(filter);
         const cars=await CarServices.pagination(skip, limit, filter);
         if(!cars)
@@ -61,7 +59,7 @@ let getCarByID=async(req,res)=>{
 let getCars=async(req,res)=>{
   try {
       const limit=15;
-      const newCars=await CarServices.getNewCars(limit);
+      const newCars=await CarServices.getNewCars(10);
       const bestBuy=await CarServices.getBestBuyCars(limit);
       if(!newCars || !bestBuy)
       {

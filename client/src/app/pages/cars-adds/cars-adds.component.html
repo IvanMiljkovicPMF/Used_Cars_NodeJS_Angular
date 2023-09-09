@@ -29,7 +29,6 @@
 
         </div>
     </div>
-    <!-- <p-paginator [rows]="15" [totalRecords]="totalCars" (onPageChange)="changePage($event)"></p-paginator> -->
 <div *ngIf="loading" class="loading-spinner center mt-5">
     <div class="spinner"></div>
 </div>
@@ -38,7 +37,6 @@
     <div *ngIf="cars!=undefined" class="row">
         <div *ngFor="let car of cars">
             <p-card (click)="navigateTo(car._id)" class="cardd">
-                <!-- Todo staviti max velicinu title -->
                 <ng-template pTemplate="title"> 
                     {{car.Model}}
                 </ng-template>

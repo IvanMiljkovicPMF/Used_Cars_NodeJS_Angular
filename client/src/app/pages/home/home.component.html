@@ -38,19 +38,17 @@
     <div *ngIf="!loading" class="container mt-2">
         <div *ngIf="cars!=undefined" class="row">
             <div class="item" *ngFor="let car of cars">
-                <p-card (click)="navigateTo(car._id)" [style]="{'width': '250px','height':'350px', 'margin-bottom': '8px', 'cursor': 'pointer'}">
-                    <!-- Todo staviti max velicinu title -->
+                <p-card (click)="navigateTo(car._id)" class="carnew" [style]="{'width': '250px','height':'350px', 'margin-bottom': '8px', 'cursor': 'pointer'}">
                     <ng-template pTemplate="title"> 
                         {{car.Model}}
                     </ng-template>
                     <ng-template pTemplate="content">
-                        <!-- <img alt="{{car.Model}}" class="picture" src="https://sveisvasta.hr/wp-content/uploads/2014/11/7190-jestiva-slika-pokrivka-torta-rodjendan-auto-crveni-sveisvasta.jpg"> -->
-                        <img alt="{{car.Model}}" class="picture" src="{{car.imageUrl}}">
+                       <img alt="{{car.Model}}" class="picture" src="{{car.imageUrl}}">
 
                         
                     </ng-template>
                     <ng-template pTemplate="footer" style="margin-top:auto">
-                        <p><b>Cena:</b> {{car.Price}} <b>Godiste:</b> {{car.Year}} </p>
+                        <p><b>Price:</b> ${{car.Price}}&nbsp; <b>Year:</b> {{car.Year}} </p>
                     </ng-template>
                 </p-card>
             </div>
@@ -61,7 +59,7 @@
     
 
     <div class="centar">
-        <h1>Companies we work With</h1>
+        <h1>Companies We Work With</h1>
     </div>
     <div class="centar mt-4">
         <button (click)="moveCompaniesLeft()" style="background: none;
@@ -71,7 +69,7 @@
         <i class="pi pi-arrow-circle-left" style="color: #3B82F6; font-size: 4rem;"></i>
         </button>
 
-        <div *ngFor="let company of companiesToDisplay">
+        <div *ngFor="let company of companiesToDisplay" [@fadeInOut]>
             <p-card [style]="{'width': '250px','height':'250px', 'margin': '8px'}">
                 <img alt="{{company.name}}" class="picture" src="{{company.imageUrl}}">
                 <p class="mt-2">{{company.description}}</p>
@@ -108,8 +106,8 @@
                 </ng-template>
                 <ng-template pTemplate="footer" style="margin-top:auto">
                     <p class="space-between">
-                        <b>Cena:</b> {{car.Price}} 
-                        <b>Godiste:</b> {{car.Year}} 
+                        <b>Price:</b> ${{car.Price}}&nbsp; 
+                        <b>Year:</b> {{car.Year}} 
                     </p>
                 </ng-template>
             </p-card>

@@ -20,3 +20,13 @@
     height: 40px; /* Adjust the height as needed */
     object-fit: contain;
 }
+.nav-item.active .nav-link {
+    color: #737373;
+    font-size: 20px;
+}
+.nav-item .nav-link {
+    color: #fff;
+}
+.nav-item .nav-link:hover {
+    color: #737373;
+}

@@ -58,7 +58,7 @@
     justify-content: flex-start;
   } */
   
-  ::ng-deep .p-card-content {
+  ::ng-deep .cardd .p-card-content {
     display: flex;
     justify-content: flex-start;
   }
