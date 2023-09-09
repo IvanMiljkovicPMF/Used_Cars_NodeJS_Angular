@@ -8,10 +8,11 @@ let getAllUsers = function()
 {
     return UserModel.find({ admin: { $ne: true }});
 }
-let saveUser= function(car)
+let getUserByID = function(id)
 {
-    return UserModel.saveUser(car);
+    return UserModel.findById(id)
 }
+
 let updateUser= function(car)
 {
     return UserModel.updateUser(car);
@@ -23,5 +24,8 @@ let deleteById = function(id)
 }
 module.exports = {
     register,
-    getAllUsers
+    getAllUsers,
+    getUserByID,
+    updateUser,
+    deleteById
 }

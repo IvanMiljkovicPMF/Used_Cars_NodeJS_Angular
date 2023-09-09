@@ -5,7 +5,11 @@ let router = express.Router()
 let passport = require('../middleware/passport')
 let userController = require('../controllers/userController')
 
-router.post('/register',userController.register)
+router.post('/register',
+                        userController.register,
+                        passport.authenticate('jwt', {session: false}), 
+                        passport.authorizeRoles('ADMIN','USER'),
+                        )
 
 router.post('/login', passport.authenticate('local', {session: false}),userController.login)
 

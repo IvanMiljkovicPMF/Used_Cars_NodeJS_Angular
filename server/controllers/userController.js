@@ -32,6 +32,20 @@ let getAllUsers = async(req, res) =>{
       return res.status(500).json({msg:"HTTP 500 error"})
   }
 }
+let getUserByID=async(req,res)=>{
+  const userId = req.params.id;
+
+  try {
+    const user = await UserServices.getUserByID(userId);
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+    res.status(200).json({user});
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'HTTP 500 error' });
+  }
+}
 let updateUser = async(req,res)=>{
   try {
     
@@ -65,6 +79,7 @@ module.exports={
     register,
     login,
     getAllUsers,
+    getUserByID,
     updateUser,
     deleteById
 }
