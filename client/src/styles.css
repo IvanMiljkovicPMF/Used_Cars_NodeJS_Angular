@@ -1,2 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.css";
+
+body {
+    background-image: url('../src/assets/whitebackground.jpg');
+    /* background-size: cover; */
+    /* Other background properties like repeat, position, etc. */
+  }
