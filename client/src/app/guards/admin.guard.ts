@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service/auth.service'; 
+import { CookieService } from 'ngx-cookie-service';
 
 
 @Injectable({
@@ -9,7 +10,7 @@ import { AuthService } from '../services/auth.service/auth.service';
 })
 export class AdminGuard implements CanActivate {
 
-    constructor( private authService:AuthService,private router:Router){}
+    constructor( private authService:AuthService,private router:Router, private cookie:CookieService){}
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -17,12 +18,12 @@ export class AdminGuard implements CanActivate {
    
       
       // todo promeniti da se proverava da li je admin
-   if(!this.authService.isAuthenticated())
+   if(this.cookie.get('role') === "ADMIN")
     {
-      this.router.navigate(['login']);
-      return false;
+      return true
     }
-    return true;
+    this.router.navigate(['login']);
+    return false;  
   }
   
 }
