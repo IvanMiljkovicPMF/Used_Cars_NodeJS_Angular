@@ -19,15 +19,9 @@ let getAllCarsPagination=async(req,res)=>{
         if (minPrice && maxPrice) {
           // Convert minPrice and maxPrice to Int32
           filter.Price = {
-            $gte: minPrice,
-            $lte: maxPrice,
+            $gte: parseInt(minPrice),
+            $lte: parseInt(maxPrice),
           };
-        } else if (minPrice) {
-          // Convert minPrice to Int32
-          filter.Price = { $gte: minPrice};
-        } else if (maxPrice) {
-          // Convert maxPrice to Int32
-          filter.Price = { $lte: maxPrice};
         }
         if (year) {
           filter.Year = year;

@@ -20,7 +20,6 @@ export class HomeComponent {
 
   loading: boolean = true;
 
-
   leftPointerForBestBuy: number = 0;
   rightPointerForBestBuy: number = 3;
   totalNumberForBestBuy: number = 0;
