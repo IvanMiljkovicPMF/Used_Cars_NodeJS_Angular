@@ -8,20 +8,15 @@ router.get('/',
                 passport.authorizeRoles('ADMIN'), 
                 UserController.getAllUsers
                 )
-router.post('/', 
-                passport.authenticate('jwt', {session: false}), 
-                passport.authorizeRoles('ADMIN'),
-                UserController.getAllUsers
-
-                )
+router.get('/:id',UserController.getUserByID)
 
 router.put('/', 
                 passport.authenticate('jwt', {session: false}), 
                 passport.authorizeRoles('ADMIN'),
-                UserController.getAllUsers)
+                UserController.updateUser)
 
 router.delete('/:id',
                 passport.authenticate('jwt', {session: false}), 
                 passport.authorizeRoles('ADMIN'),
-                UserController.getAllUsers)
+                UserController.deleteById)
 module.exports=router
