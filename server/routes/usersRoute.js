@@ -8,19 +8,19 @@ router.get('/',
                 passport.authorizeRoles('ADMIN'), 
                 UserController.getAllUsers
                 )
-router.post('/add', 
+router.post('/', 
                 passport.authenticate('jwt', {session: false}), 
                 passport.authorizeRoles('ADMIN'),
                 UserController.getAllUsers
 
                 )
 
-router.put('/edit', 
+router.put('/', 
                 passport.authenticate('jwt', {session: false}), 
                 passport.authorizeRoles('ADMIN'),
                 UserController.getAllUsers)
 
-router.delete('/delete/:id',
+router.delete('/:id',
                 passport.authenticate('jwt', {session: false}), 
                 passport.authorizeRoles('ADMIN'),
                 UserController.getAllUsers)
