@@ -2,18 +2,30 @@
     <div class="centar1">
         <h1>Search</h1>
         <div class="card">
-            <label for="makeInput">Unesite naziv marke:</label>
-            <input type="text" id="makeInput" placeholder="Unesite naziv marke">
-            <label for="modelInput">Unesite naziv modela:</label>
-            <input type="text" id="modelInput" placeholder="Unesite naziv modela">
-            <label for="yearInput">Unesite godinu proizvodnje:</label>
-            <input  type="number" placeholder="Unesite godinu proizvodnje" id="yearInput" name="year" min="1900" max="2023" step="1">
+            <div class="up-text">
+                <div class="left-text">
+                    <label for="makeInput">Insert make brand:</label>
+                    <input [(ngModel)]="make" pInputText type="text" id="makeInput" placeholder="Insert make brand">
+                </div>
+                <div class="right-text">
+                    <label for="year">Insert make year:</label>
+                    <p-inputNumber [(ngModel)]="year" mode="decimal" [showButtons]="true" inputId="year" [min]="1990" [max]="2023">
+                    </p-inputNumber>
+                </div>
+            </div>
+            <div class="center-text">
+                <label class="sirina" for="modelInput">Insert model:</label>
+                <input class="sirina" [(ngModel)]="model" pInputText type="text" id="modelInput" placeholder="Insert model">    
+            </div>
 
-            
-            <h5>Price: {{rangeValues[0] + ' - ' + rangeValues[1]}}</h5>
-            <p-slider [(ngModel)]="rangeValues"[step]="500" [min]="1000" [max]="100000" [range]="true"></p-slider>
+            <div class="center-text">
+                <label    class="sirina"  for="price">Price range: <b> {{rangeValues[0] + ' - ' + rangeValues[1]}}</b></label>
+                <p-slider  class="mt-2 sirina" [(ngModel)]="rangeValues"[step]="500" [min]="1000" [max]="100000" inputId="price" [range]="true"></p-slider>
+            </div>
 
-            <button class="mt-2" [routerLink]='["/ads"]'>Pretrazi *todo intert icon*</button>
+            <div class="search-button">
+                <p-button class="mt-3" label="Search" (click)="navigateToAds()"></p-button>
+            </div>
 
         </div>
     </div>
