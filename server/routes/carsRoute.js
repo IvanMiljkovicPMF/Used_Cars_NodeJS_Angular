@@ -12,19 +12,19 @@ router.get('/car/:id',CarController.getCarByID)
 
 router.post('/add', 
                     passport.authenticate('jwt', {session: false}), 
-                    passport.authorizeRoles('ADMIN'),
+                    passport.authorizeRoles('ADMIN','VENDOR'),
                     CarController.saveCar
 
                     )
 
 router.put('/edit', 
                     passport.authenticate('jwt', {session: false}), 
-                    passport.authorizeRoles('ADMIN'),
+                    passport.authorizeRoles('ADMIN','VENDOR'),
                     CarController.updateCar)
 
 router.delete('/delete/:id',
                     passport.authenticate('jwt', {session: false}), 
-                    passport.authorizeRoles('ADMIN'),
+                    passport.authorizeRoles('ADMIN','VENDOR'),
                     CarController.deleteById)
 
 module.exports=router

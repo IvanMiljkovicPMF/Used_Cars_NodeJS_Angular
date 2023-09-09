@@ -27,13 +27,44 @@ let getAllUsers = async(req, res) =>{
     }
 
     res.status(200).json({users});
-
-    
-} catch (error) {
-    console.log(error);
-    return res.status(500).json({msg:"HTTP 500 error"})
+  } catch (error) {
+      console.log(error);
+      return res.status(500).json({msg:"HTTP 500 error"})
+  }
 }
+let updateUser = async(req,res)=>{
+  try {
+    
+    const user = await UserServices.updateUser(req.body);
+    if(!user)
+    {
+      return res.status(404).json({ error: 'User not updated' });
+    }
+    res.status(204).json({user}); 
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'HTTP 500 error' }); 
+  }
+};
+
+let deleteById = async(req,res)=>{
+  const userId = req.params.id;
+  try {
+    const user = await UserServices.deleteById(userId);
+    if(!user)
+    {
+      return res.status(404).json({ error: 'User not deleted' });
+    }
+    res.status(204).json({user}); 
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'HTTP 500 error' }); 
+  }
 }
 module.exports={
-    register,login,getAllUsers
+    register,
+    login,
+    getAllUsers,
+    updateUser,
+    deleteById
 }

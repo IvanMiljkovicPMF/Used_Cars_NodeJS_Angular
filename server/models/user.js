@@ -70,4 +70,21 @@ UserModel.register=async function(email,username,password)
     }
 }
 
+UserModel.updateUser = async function (userObj){
+    let user = await UserModel.findById(userObj._id);
+    Object.assign(user, userObj);
+    user.save();
+
+    return user;
+}
+
+UserModel.deleteById = async function(id){
+        
+    let success = await UserModel.findOneAndDelete({ _id: id }).then(async function(user){
+        return !!(typeof user !== 'undefined' && user);
+    });
+
+    return success;
+}
+
 module.exports=UserModel

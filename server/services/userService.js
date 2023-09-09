@@ -1,12 +1,25 @@
-var UserModel = require("../models/user")
+let UserModel = require("../models/user")
 
-var register = function(email, name, password)
+let register = function(email, name, password)
 {
     return UserModel.register(email, name, password);
 }
-var getAllUsers = function()
+let getAllUsers = function()
 {
     return UserModel.find({ admin: { $ne: true }});
+}
+let saveUser= function(car)
+{
+    return UserModel.saveUser(car);
+}
+let updateUser= function(car)
+{
+    return UserModel.updateUser(car);
+}
+
+let deleteById = function(id)
+{
+    return UserModel.deleteById(id)
 }
 module.exports = {
     register,
