@@ -75,8 +75,7 @@ let getCars=async(req,res)=>{
 }
 let saveCar = async (req, res) => {
   try {
-    
-    const car = await CarServices.saveCar(req.body);
+    const car = await CarServices.saveCar(req.body.car);
     if(!car)
     {
       return res.status(404).json({ error: 'Car not created' });

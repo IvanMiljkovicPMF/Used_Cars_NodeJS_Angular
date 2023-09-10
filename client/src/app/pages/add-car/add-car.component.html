@@ -1,2 +1,247 @@
-<h1>Todo dodati ovako sve po modelu iz Cars</h1>
-<input pInputText placeholder="Model">
+<form (ngSubmit)="addCar()" [formGroup]="addCarForm" class="addCarForm"  style="margin-bottom: 94px;">
+    <p-panel header="Add Car">
+        <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    Year:
+                </div>
+                <div class="ui-grid-col-6">
+                    <input pInputText type="number" formControlName="Year" class="form-control" name="Year">
+                </div>
+                <div class="ui-grid-col-4">
+                    <div [hidden]="addCarForm.controls['Year'].valid || !addCarForm.controls['Year'].dirty" class="alert alert-danger">
+                        Year is required
+                    </div>
+                </div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    Make:
+                </div>
+                <div class="ui-grid-col-6">
+                    <input pInputText type="text" formControlName="Make" class="form-control" name="Make">
+                </div>
+                <div class="ui-grid-col-4">
+                    <div [hidden]="addCarForm.controls['Make'].valid || !addCarForm.controls['Make'].dirty" class="alert alert-danger">
+                        Make is required
+                    </div>
+                </div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    Model:
+                </div>
+                <div class="ui-grid-col-6">
+                    <input pInputText type="text" formControlName="Model" class="form-control" name="Model">
+                </div>
+                <div class="ui-grid-col-4">
+                    <div [hidden]="addCarForm.controls['Model'].valid || !addCarForm.controls['Model'].dirty" class="alert alert-danger">
+                        Model is required
+                    </div>
+                </div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    UsedNew:
+                </div>
+                <div class="ui-grid-col-6">
+                    <input pInputText type="text" formControlName="UsedNew" class="form-control" name="UsedNew">
+                </div>
+                <div class="ui-grid-col-4">
+                    <div [hidden]="addCarForm.controls['UsedNew'].valid || !addCarForm.controls['UsedNew'].dirty" class="alert alert-danger">
+                        UsedNew is required
+                    </div>
+                </div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    Price:
+                </div>
+                <div class="ui-grid-col-6">
+                    <input pInputText type="number" formControlName="Price" class="form-control" name="Price">
+                </div>
+                <div class="ui-grid-col-4">
+                    <div [hidden]="addCarForm.controls['Price'].valid || !addCarForm.controls['Price'].dirty" class="alert alert-danger">
+                        Price is required
+                    </div>
+                </div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    State:
+                </div>
+                <div class="ui-grid-col-6">
+                    <input pInputText type="text" formControlName="State" class="form-control" name="State">
+                </div>
+                <div class="ui-grid-col-4">
+                    <div [hidden]="addCarForm.controls['State'].valid || !addCarForm.controls['State'].dirty" class="alert alert-danger">
+                        State is required
+                    </div>
+                </div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    Zipcode:
+                </div>
+                <div class="ui-grid-col-6">
+                    <input pInputText type="text" formControlName="Zipcode" class="form-control" name="Zipcode">
+                </div>
+                <div class="ui-grid-col-4">
+                    <div [hidden]="addCarForm.controls['Zipcode'].valid || !addCarForm.controls['Zipcode'].dirty" class="alert alert-danger">
+                        Zipcode is required
+                    </div>
+                </div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    DealType:
+                </div>
+                <div class="ui-grid-col-6">
+                    <input pInputText type="text" formControlName="DealType" class="form-control" name="DealType">
+                </div>
+                <div class="ui-grid-col-4">
+                    <div [hidden]="addCarForm.controls['DealType'].valid || !addCarForm.controls['DealType'].dirty" class="alert alert-danger">
+                        DealType is required
+                    </div>
+                </div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    ComfortRating:
+                </div>
+                <div class="ui-grid-col-6">
+                    <input pInputText type="number" formControlName="ComfortRating" class="form-control" name="ComfortRating">
+                </div>
+                <div class="ui-grid-col-4">
+                    <div [hidden]="addCarForm.controls['ComfortRating'].valid || !addCarForm.controls['ComfortRating'].dirty" class="alert alert-danger">
+                        ComfortRating is required
+                    </div>
+                </div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    InteriorDesignRating:
+                </div>
+                <div class="ui-grid-col-6">
+                    <input pInputText type="number" formControlName="InteriorDesignRating" class="form-control" name="InteriorDesignRating">
+                </div>
+                <div class="ui-grid-col-4">
+                    <div [hidden]="addCarForm.controls['InteriorDesignRating'].valid || !addCarForm.controls['InteriorDesignRating'].dirty" class="alert alert-danger">
+                        InteriorDesignRating is required
+                    </div>
+                </div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    PerformanceRating:
+                </div>
+                <div class="ui-grid-col-6">
+                    <input pInputText type="number" formControlName="PerformanceRating" class="form-control" name="PerformanceRating">
+                </div>
+                <div class="ui-grid-col-4">
+                    <div [hidden]="addCarForm.controls['PerformanceRating'].valid || !addCarForm.controls['PerformanceRating'].dirty" class="alert alert-danger">
+                        PerformanceRating is required
+                    </div>
+                </div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    ValueForMoneyRating:
+                </div>
+                <div class="ui-grid-col-6">
+                    <input pInputText type="number" formControlName="ValueForMoneyRating" class="form-control" name="ValueForMoneyRating">
+                </div>
+                <div class="ui-grid-col-4">
+                    <div [hidden]="addCarForm.controls['ValueForMoneyRating'].valid || !addCarForm.controls['ValueForMoneyRating'].dirty" class="alert alert-danger">
+                        ValueForMoneyRating is required
+                    </div>
+                </div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    ExteriorStylingRating:
+                </div>
+                <div class="ui-grid-col-6">
+                    <input pInputText type="number" formControlName="ExteriorStylingRating" class="form-control" name="ExteriorStylingRating">
+                </div>
+                <div class="ui-grid-col-4">
+                    <div [hidden]="addCarForm.controls['ExteriorStylingRating'].valid || !addCarForm.controls['ExteriorStylingRating'].dirty" class="alert alert-danger">
+                        ExteriorStylingRating is required
+                    </div>
+                </div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    ReliabilityRating:
+                </div>
+                <div class="ui-grid-col-6">
+                    <input pInputText type="number" formControlName="ReliabilityRating" class="form-control" name="ReliabilityRating">
+                </div>
+                <div class="ui-grid-col-4">
+                    <div [hidden]="addCarForm.controls['ReliabilityRating'].valid || !addCarForm.controls['ReliabilityRating'].dirty" class="alert alert-danger">
+                        ReliabilityRating is required
+                    </div>
+                </div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    FuelType:
+                </div>
+                <div class="ui-grid-col-6">
+                    <input pInputText type="text" formControlName="FuelType" class="form-control" name="FuelType">
+                </div>
+                <div class="ui-grid-col-4">
+                    <div [hidden]="addCarForm.controls['FuelType'].valid || !addCarForm.controls['FuelType'].dirty" class="alert alert-danger">
+                        FuelType is required
+                    </div>
+                </div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    Transmission:
+                </div>
+                <div class="ui-grid-col-6">
+                    <input pInputText type="text" formControlName="Transmission" class="form-control" name="Transmission">
+                </div>
+                <div class="ui-grid-col-4">
+                    <div [hidden]="addCarForm.controls['Transmission'].valid || !addCarForm.controls['Transmission'].dirty" class="alert alert-danger">
+                        Transmission is required
+                    </div>
+                </div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    Engine:
+                </div>
+                <div class="ui-grid-col-6">
+                    <input pInputText type="text" formControlName="Engine" class="form-control" name="Engine">
+                </div>
+                <div class="ui-grid-col-4">
+                    <div [hidden]="addCarForm.controls['Engine'].valid || !addCarForm.controls['Engine'].dirty" class="alert alert-danger">
+                        Engine is required
+                    </div>
+                </div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    Mileage:
+                </div>
+                <div class="ui-grid-col-6">
+                    <input pInputText type="number" formControlName="Mileage" class="form-control" name="Mileage">
+                </div>
+                <div class="ui-grid-col-4">
+                    <div [hidden]="addCarForm.controls['Mileage'].valid || !addCarForm.controls['Mileage'].dirty" class="alert alert-danger">
+                        Mileage is required
+                    </div>
+                </div>
+            </div>
+            <div class="ui-grid-row" id="buttonLogin">
+                <div class="ui-grid-col-2"></div>
+                <div class="ui-grid-col-6">
+                    <button  pButton type="submit" label="Submit" [disabled]="!addCarForm.valid"></button>
+                </div>
+                <div class="ui-grid-col-4"></div>
+            </div>
+        </div>
+    </p-panel>
+</form>

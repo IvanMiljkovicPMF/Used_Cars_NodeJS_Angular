@@ -35,7 +35,6 @@ export class HomeComponent {
   leftPointerForCompanies: number = 0;
   rightPointerForCompanies: number = 2;
   companiesToDisplay: Companies[] = []
-  // TODO: za Ivana da ubaci kompanije u bazu
   companies: Companies[] =[
     {
       name: 'Toyota',

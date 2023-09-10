@@ -30,7 +30,6 @@ import { AddUserComponent } from './pages/add-user/add-user.component';
 import { EditUserComponent } from './pages/edit-user/edit-user.component';
 import { UsersPortalComponent } from './pages/users-portal/users-portal.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { MenuItem } from 'primeng/api';
 import { Subscription } from 'rxjs';
@@ -19,6 +19,8 @@ export class NavbarComponent {
   // TODO get this from localStorage
   loggedIn: boolean = false;
   authSubscription!: Subscription; // Declare an auth subscription
+  currentRoute!: string;
+  activatedRoute: any;
 
 
   constructor(
@@ -26,7 +28,13 @@ export class NavbarComponent {
     private router: Router,
     private carsService:CarsService,
     private cookie:CookieService
-    ){}
+    ){
+      this.router.events.subscribe((event) => {
+        if (event instanceof NavigationEnd) {
+          this.currentRoute = event.url;
+        }
+      });
+    }
 
   ngOnInit(){
 
@@ -36,7 +44,7 @@ export class NavbarComponent {
         // console.log(status);
         
       });
-
+    
 
 
     this.loggedIn = this.authService.isAuthenticated()
@@ -77,6 +85,7 @@ export class NavbarComponent {
                 command: () => {
                     this.router.navigate([`add-user`])
                   }
+                
             },
         ]
     },

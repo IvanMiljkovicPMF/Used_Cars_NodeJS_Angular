@@ -75,8 +75,6 @@ export class CarsAddsComponent {
     const queryString = params.toString();
 
     if(queryString){
-      // console.log(queryString);
-      console.log(queryString);
       this.query = queryString
       
       this.getCarsWithParams( this.currentPage, queryString)
@@ -130,8 +128,6 @@ export class CarsAddsComponent {
     this.carsService.getCarsForPageWithParams(index,query).subscribe({
       next:val=>{
         this.cars = []
-        console.log(val);
-       
         for(let i=0;i<val.cars.length;i++){
           this.cars.push(val.cars[i])
           // this.cars[i].imageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png";

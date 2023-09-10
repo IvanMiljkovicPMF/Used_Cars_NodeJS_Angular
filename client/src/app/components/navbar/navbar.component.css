@@ -30,3 +30,10 @@
 .nav-item .nav-link:hover {
     color: #737373;
 }
+
+::ng-deep .p-menu .p-menuitem:not(.p-highlight):not(.p-disabled).p-focus > .p-menuitem-content{
+    background:unset;
+}
+::ng-deep .p-menu .p-menuitem:not(.p-highlight):not(.p-disabled) > .p-menuitem-content:hover{
+    background:#e9ecef;
+}
