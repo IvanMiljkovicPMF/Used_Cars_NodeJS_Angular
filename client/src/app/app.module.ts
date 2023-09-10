@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser'
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
-import { AboutUsComponent } from './pages/about-us/about-us.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -11,23 +10,16 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import{HttpClientModule}from '@angular/common/http'
 import { CommonModule } from '@angular/common';
-
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-import { CardModule } from 'primeng/card'; // Import CardModule
+import { CardModule } from 'primeng/card';
 import { PaginatorModule } from 'primeng/paginator';
 import { SingleCarComponent } from './pages/single-car/single-car.component';
-
 import { MenuModule } from 'primeng/menu';
 import { SliderModule } from 'primeng/slider';
 import { TableModule } from 'primeng/table';
 import {InputNumberModule} from 'primeng/inputnumber';
-
-
-
-
 import { CarsPortalComponent } from './pages/cars-portal/cars-portal.component';
 import { EditCarComponent } from './pages/edit-car/edit-car.component';
 import { AddCarComponent } from './pages/add-car/add-car.component';
@@ -38,12 +30,10 @@ import { AddUserComponent } from './pages/add-user/add-user.component';
 import { EditUserComponent } from './pages/edit-user/edit-user.component';
 import { UsersPortalComponent } from './pages/users-portal/users-portal.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    AboutUsComponent,
     ContactComponent,
     RegisterComponent,
     LoginComponent,
@@ -75,7 +65,7 @@ import { UsersPortalComponent } from './pages/users-portal/users-portal.componen
     PaginatorModule,
     InputNumberModule,
     ReactiveFormsModule,
-    PanelModule,
+    PanelModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -4,13 +4,14 @@ import {Router} from '@angular/router';
 
 import axios from 'axios';
 import { Cars, Companies } from 'src/app/models/cars';
-
+import { fadeInOutAnimation } from './animation';
 
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+  animations: [fadeInOutAnimation],
 })
 export class HomeComponent {
 
@@ -34,7 +35,6 @@ export class HomeComponent {
   leftPointerForCompanies: number = 0;
   rightPointerForCompanies: number = 2;
   companiesToDisplay: Companies[] = []
-  // TODO: za Ivana da ubaci kompanije u bazu
   companies: Companies[] =[
     {
       name: 'Toyota',
@@ -91,6 +91,9 @@ export class HomeComponent {
     this.getCars()
     
     this.setCompaniesToDisplay()
+    setInterval(() => {
+      this.moveCompaniesRight();
+    }, 3000);
 
   }
 
@@ -197,15 +200,15 @@ export class HomeComponent {
         for(let i=0;i<val.newCars.length;i++){
           
           this.cars.push(val.newCars[i])
-          this.cars[i].imageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png";
+          // this.cars[i].imageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png";
 
-          // this.get10thCarImage(false,i)
+          this.get10thCarImage(false,i)
         }
         for(let i=0; i<val.bestBuy.length;i++){
           this.bestCars.push(val.bestBuy[i])
-          this.bestCars[i].imageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png";
+          // this.bestCars[i].imageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png";
 
-          // this.get10thCarImage(true,i)
+          this.get10thCarImage(true,i)
         }
         this.setBestBuyToDisply()
 
@@ -222,13 +225,6 @@ export class HomeComponent {
   navigateTo(car:any){
     this.router.navigate([`car/${car}`])
   }
-
-
-
-
-
-
-
   async get10thCarImage(best:boolean,i: number): Promise<void> {
 
     const query = `${this.cars[i].Model}+${this.cars[i].Make}+${this.cars[i].Year}`

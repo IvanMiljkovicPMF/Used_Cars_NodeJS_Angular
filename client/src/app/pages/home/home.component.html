@@ -1,4 +1,4 @@
-<div>
+<div >
     <div class="centar1">
         <h1>Search</h1>
         <div class="card">
@@ -30,7 +30,7 @@
         </div>
     </div>
     <div class="centar mt-2">
-        <h1>Ponuda</h1>
+        <h1>New Cars</h1>
     </div>
     <div *ngIf="loading" class="loading-spinner center mt-5">
         <div class="spinner"></div>
@@ -38,19 +38,17 @@
     <div *ngIf="!loading" class="container mt-2">
         <div *ngIf="cars!=undefined" class="row">
             <div class="item" *ngFor="let car of cars">
-                <p-card (click)="navigateTo(car._id)" [style]="{'width': '250px','height':'350px', 'margin-bottom': '8px', 'cursor': 'pointer'}">
-                    <!-- Todo staviti max velicinu title -->
+                <p-card (click)="navigateTo(car._id)" class="carnew" [style]="{'width': '250px','height':'350px', 'margin-bottom': '8px', 'cursor': 'pointer'}">
                     <ng-template pTemplate="title"> 
                         {{car.Model}}
                     </ng-template>
                     <ng-template pTemplate="content">
-                        <!-- <img alt="{{car.Model}}" class="picture" src="https://sveisvasta.hr/wp-content/uploads/2014/11/7190-jestiva-slika-pokrivka-torta-rodjendan-auto-crveni-sveisvasta.jpg"> -->
-                        <img alt="{{car.Model}}" class="picture" src="{{car.imageUrl}}">
+                       <img alt="{{car.Model}}" class="picture" src="{{car.imageUrl}}">
 
                         
                     </ng-template>
                     <ng-template pTemplate="footer" style="margin-top:auto">
-                        <p><b>Cena:</b> {{car.Price}} <b>Godiste:</b> {{car.Year}} </p>
+                        <p><b>Price:</b> ${{car.Price}}&nbsp; <b>Year:</b> {{car.Year}} </p>
                     </ng-template>
                 </p-card>
             </div>
@@ -61,24 +59,40 @@
     
 
     <div class="centar">
-        <h1>Komapnije sa kojim radimo</h1>
+        <h1>Companies We Work With</h1>
     </div>
     <div class="centar mt-4">
-        <button (click)="moveCompaniesLeft()">Left</button>
-        <div *ngFor="let company of companiesToDisplay">
+        <button (click)="moveCompaniesLeft()" style="background: none;
+        border: none;
+        padding: 0;
+        cursor: pointer;">
+        <i class="pi pi-arrow-circle-left" style="color: #3B82F6; font-size: 4rem;"></i>
+        </button>
+
+        <div *ngFor="let company of companiesToDisplay" [@fadeInOut]>
             <p-card [style]="{'width': '250px','height':'250px', 'margin': '8px'}">
                 <img alt="{{company.name}}" class="picture" src="{{company.imageUrl}}">
                 <p class="mt-2">{{company.description}}</p>
             </p-card>
         </div>
-        <button (click)="moveCompaniesRight()">Right</button>
+        <button (click)="moveCompaniesRight()" style="background: none;
+        border: none;
+        padding: 0;
+        cursor: pointer;">
+        <i class="pi pi-arrow-circle-right" style="color: #3B82F6; font-size: 4rem;"></i>
+        </button>
     </div>
 
     <div class="centar mt-4">
-        <h1>Moli se ivan da uradi najprodavanije</h1>
+        <h1>Best Buy Cars</h1>
     </div>
     <div class="centar">
-        <button (click)="moveBestBuyLeft()">Left</button>
+        <button (click)="moveBestBuyLeft()" style="background: none;
+        border: none;
+        padding: 0;
+        cursor: pointer;">
+        <i class="pi pi-arrow-circle-left" style="color: #3B82F6; font-size: 4rem;"></i>
+        </button>
         <div *ngFor="let car of bestBuyToDisplay">
             <p-card (click)="navigateTo(car._id)" [style]="{'width': '300px','height':'350px','margin-left':'10px','margin-right':'10px' ,'margin-bottom': '8px', 'cursor': 'pointer'}">
                 <ng-template pTemplate="title"> 
@@ -92,17 +106,22 @@
                 </ng-template>
                 <ng-template pTemplate="footer" style="margin-top:auto">
                     <p class="space-between">
-                        <b>Cena:</b> {{car.Price}} 
-                        <b>Godiste:</b> {{car.Year}} 
+                        <b>Price:</b> ${{car.Price}}&nbsp; 
+                        <b>Year:</b> {{car.Year}} 
                     </p>
                 </ng-template>
             </p-card>
         </div>
-        <button (click)="moveBestBuyRight()">Right</button>
+        <button (click)="moveBestBuyRight()" style="background: none;
+        border: none;
+        padding: 0;
+        cursor: pointer;">
+        <i class="pi pi-arrow-circle-right" style="color: #3B82F6; font-size: 4rem;"></i>
+        </button>
     </div>
 
     <div class="centar">
-       <h1>Vesti hardokdovati</h1>
+       <h1>Daily News</h1>
     </div>
 
 </div>
