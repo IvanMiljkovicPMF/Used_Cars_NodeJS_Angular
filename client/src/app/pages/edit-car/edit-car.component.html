@@ -2,9 +2,260 @@
     <div class="spinner"></div>
   </div>
 <div *ngIf="!loading">
-    <p>{{car.Model}}</p>
-    
-    
-    <p-button (click)="editCar()" styleClass="p-button-success" label="Confirm" ></p-button>
+  <form (ngSubmit)="editCar()" [formGroup]="editCarForm" class="editCarForm"  style="margin-bottom: 94px;">
+    <p-panel header="Edit Car">
+        <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
+          <div class="ui-grid-row">
+            
+            <div class="ui-grid-col-6">
+                <input pInputText type="hidden" formControlName="_id" class="form-control" name="_id">
+            </div>
+            
+        </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    Year:
+                </div>
+                <div class="ui-grid-col-6">
+                    <input pInputText type="number" formControlName="Year" class="form-control" name="Year">
+                </div>
+                <div class="ui-grid-col-4">
+                    <div [hidden]="editCarForm.controls['Year'].valid || !editCarForm.controls['Year'].dirty" class="alert alert-danger">
+                        Year is required
+                    </div>
+                </div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    Make:
+                </div>
+                <div class="ui-grid-col-6">
+                    <input pInputText type="text" formControlName="Make" class="form-control" name="Make">
+                </div>
+                <div class="ui-grid-col-4">
+                    <div [hidden]="editCarForm.controls['Make'].valid || !editCarForm.controls['Make'].dirty" class="alert alert-danger">
+                        Make is required
+                    </div>
+                </div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    Model:
+                </div>
+                <div class="ui-grid-col-6">
+                    <input pInputText type="text" formControlName="Model" class="form-control" name="Model">
+                </div>
+                <div class="ui-grid-col-4">
+                    <div [hidden]="editCarForm.controls['Model'].valid || !editCarForm.controls['Model'].dirty" class="alert alert-danger">
+                        Model is required
+                    </div>
+                </div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    UsedNew:
+                </div>
+                <div class="ui-grid-col-6">
+                    <input pInputText type="text" formControlName="UsedNew" class="form-control" name="UsedNew">
+                </div>
+                <div class="ui-grid-col-4">
+                    <div [hidden]="editCarForm.controls['UsedNew'].valid || !editCarForm.controls['UsedNew'].dirty" class="alert alert-danger">
+                        UsedNew is required
+                    </div>
+                </div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    Price:
+                </div>
+                <div class="ui-grid-col-6">
+                    <input pInputText type="number" formControlName="Price" class="form-control" name="Price">
+                </div>
+                <div class="ui-grid-col-4">
+                    <div [hidden]="editCarForm.controls['Price'].valid || !editCarForm.controls['Price'].dirty" class="alert alert-danger">
+                        Price is required
+                    </div>
+                </div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    State:
+                </div>
+                <div class="ui-grid-col-6">
+                    <input pInputText type="text" formControlName="State" class="form-control" name="State">
+                </div>
+                <div class="ui-grid-col-4">
+                    <div [hidden]="editCarForm.controls['State'].valid || !editCarForm.controls['State'].dirty" class="alert alert-danger">
+                        State is required
+                    </div>
+                </div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    Zipcode:
+                </div>
+                <div class="ui-grid-col-6">
+                    <input pInputText type="text" formControlName="Zipcode" class="form-control" name="Zipcode">
+                </div>
+                <div class="ui-grid-col-4">
+                    <div [hidden]="editCarForm.controls['Zipcode'].valid || !editCarForm.controls['Zipcode'].dirty" class="alert alert-danger">
+                        Zipcode is required
+                    </div>
+                </div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    DealType:
+                </div>
+                <div class="ui-grid-col-6">
+                    <input pInputText type="text" formControlName="DealType" class="form-control" name="DealType">
+                </div>
+                <div class="ui-grid-col-4">
+                    <div [hidden]="editCarForm.controls['DealType'].valid || !editCarForm.controls['DealType'].dirty" class="alert alert-danger">
+                        DealType is required
+                    </div>
+                </div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    ComfortRating:
+                </div>
+                <div class="ui-grid-col-6">
+                    <input pInputText type="number" formControlName="ComfortRating" class="form-control" name="ComfortRating">
+                </div>
+                <div class="ui-grid-col-4">
+                    <div [hidden]="editCarForm.controls['ComfortRating'].valid || !editCarForm.controls['ComfortRating'].dirty" class="alert alert-danger">
+                        ComfortRating is required
+                    </div>
+                </div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    InteriorDesignRating:
+                </div>
+                <div class="ui-grid-col-6">
+                    <input pInputText type="number" formControlName="InteriorDesignRating" class="form-control" name="InteriorDesignRating">
+                </div>
+                <div class="ui-grid-col-4">
+                    <div [hidden]="editCarForm.controls['InteriorDesignRating'].valid || !editCarForm.controls['InteriorDesignRating'].dirty" class="alert alert-danger">
+                        InteriorDesignRating is required
+                    </div>
+                </div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    PerformanceRating:
+                </div>
+                <div class="ui-grid-col-6">
+                    <input pInputText type="number" formControlName="PerformanceRating" class="form-control" name="PerformanceRating">
+                </div>
+                <div class="ui-grid-col-4">
+                    <div [hidden]="editCarForm.controls['PerformanceRating'].valid || !editCarForm.controls['PerformanceRating'].dirty" class="alert alert-danger">
+                        PerformanceRating is required
+                    </div>
+                </div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    ValueForMoneyRating:
+                </div>
+                <div class="ui-grid-col-6">
+                    <input pInputText type="number" formControlName="ValueForMoneyRating" class="form-control" name="ValueForMoneyRating">
+                </div>
+                <div class="ui-grid-col-4">
+                    <div [hidden]="editCarForm.controls['ValueForMoneyRating'].valid || !editCarForm.controls['ValueForMoneyRating'].dirty" class="alert alert-danger">
+                        ValueForMoneyRating is required
+                    </div>
+                </div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    ExteriorStylingRating:
+                </div>
+                <div class="ui-grid-col-6">
+                    <input pInputText type="number" formControlName="ExteriorStylingRating" class="form-control" name="ExteriorStylingRating">
+                </div>
+                <div class="ui-grid-col-4">
+                    <div [hidden]="editCarForm.controls['ExteriorStylingRating'].valid || !editCarForm.controls['ExteriorStylingRating'].dirty" class="alert alert-danger">
+                        ExteriorStylingRating is required
+                    </div>
+                </div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    ReliabilityRating:
+                </div>
+                <div class="ui-grid-col-6">
+                    <input pInputText type="number" formControlName="ReliabilityRating" class="form-control" name="ReliabilityRating">
+                </div>
+                <div class="ui-grid-col-4">
+                    <div [hidden]="editCarForm.controls['ReliabilityRating'].valid || !editCarForm.controls['ReliabilityRating'].dirty" class="alert alert-danger">
+                        ReliabilityRating is required
+                    </div>
+                </div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    FuelType:
+                </div>
+                <div class="ui-grid-col-6">
+                    <input pInputText type="text" formControlName="FuelType" class="form-control" name="FuelType">
+                </div>
+                <div class="ui-grid-col-4">
+                    <div [hidden]="editCarForm.controls['FuelType'].valid || !editCarForm.controls['FuelType'].dirty" class="alert alert-danger">
+                        FuelType is required
+                    </div>
+                </div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    Transmission:
+                </div>
+                <div class="ui-grid-col-6">
+                    <input pInputText type="text" formControlName="Transmission" class="form-control" name="Transmission">
+                </div>
+                <div class="ui-grid-col-4">
+                    <div [hidden]="editCarForm.controls['Transmission'].valid || !editCarForm.controls['Transmission'].dirty" class="alert alert-danger">
+                        Transmission is required
+                    </div>
+                </div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    Engine:
+                </div>
+                <div class="ui-grid-col-6">
+                    <input pInputText type="text" formControlName="Engine" class="form-control" name="Engine">
+                </div>
+                <div class="ui-grid-col-4">
+                    <div [hidden]="editCarForm.controls['Engine'].valid || !editCarForm.controls['Engine'].dirty" class="alert alert-danger">
+                        Engine is required
+                    </div>
+                </div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    Mileage:
+                </div>
+                <div class="ui-grid-col-6">
+                    <input pInputText type="number" formControlName="Mileage" class="form-control" name="Mileage">
+                </div>
+                <div class="ui-grid-col-4">
+                    <div [hidden]="editCarForm.controls['Mileage'].valid || !editCarForm.controls['Mileage'].dirty" class="alert alert-danger">
+                        Mileage is required
+                    </div>
+                </div>
+            </div>
+            <div class="ui-grid-row" id="buttonLogin">
+                <div class="ui-grid-col-2"></div>
+                <div class="ui-grid-col-6">
+                    <button  pButton type="submit" label="Submit" [disabled]="!editCarForm.valid"></button>
+                </div>
+                <div class="ui-grid-col-4"></div>
+            </div>
+        </div>
+    </p-panel>
+</form>
+
 </div>
 

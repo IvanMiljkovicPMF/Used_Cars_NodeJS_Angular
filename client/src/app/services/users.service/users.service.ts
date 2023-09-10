@@ -51,11 +51,9 @@ export class UsersService {
     })
   }
 
-  editUser():Observable<any>{
+  editUser(user:Register):Observable<any>{
     return this.httpClient.put<any>(`http://localhost:3000/users`,
-    {
-      // Todo ovde user
-    },
+    user,
     {
       headers:this.headers
     })

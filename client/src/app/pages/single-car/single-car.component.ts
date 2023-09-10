@@ -109,15 +109,22 @@ export class SingleCarComponent {
     return false;  
   }
   buyCar(){
-    this.carsService.deleteCar(this.carId).subscribe({
-      next:val=>{
-        console.log(val);
-        this.router.navigate([`ads`])
-      },
-      error:err=>{
-        console.log(err);
-      }
-    })
+    if (window.confirm("Are you sure you want to buy this car?")) {
+      this.carsService.deleteCar(this.carId).subscribe({
+        next:val=>{
+          
+          this.router.navigate([`ads`])
+          alert("You have bought a car!")
+        },
+        error:err=>{
+          console.log(err);
+        }
+      })
+  } else {
+      
+  }
+  
+    
   }
 
 }

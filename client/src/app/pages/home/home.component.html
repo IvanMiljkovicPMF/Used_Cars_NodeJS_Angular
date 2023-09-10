@@ -1,6 +1,6 @@
 <div >
     <div class="centar1" >
-        <h1>Search</h1>
+        <h1>Search Cars</h1>
         <div class="card">
             <div class="up-text mt-2">
                 <div class="left-text">
@@ -19,7 +19,7 @@
             </div>
 
             <div class="center-text">
-                <label    class="sirina"  for="price">Price range: <b> {{rangeValues[0] + ' - ' + rangeValues[1]}}</b></label>
+                <label    class="sirina"  for="price">Price range: <b> {{'$'+rangeValues[0] + ' - ' +'$'+ rangeValues[1]}}</b></label>
                 <p-slider  class="mt-2 sirina" [(ngModel)]="rangeValues"[step]="500" [min]="1000" [max]="100000" inputId="price" [range]="true"></p-slider>
             </div>
 
@@ -99,10 +99,8 @@
                     {{car.Model}}
                 </ng-template>
                 <ng-template pTemplate="content">
-                    <!-- <img alt="{{car.Model}}" class="picture" src="https://sveisvasta.hr/wp-content/uploads/2014/11/7190-jestiva-slika-pokrivka-torta-rodjendan-auto-crveni-sveisvasta.jpg"> -->
-                    <img alt="{{car.Model}}" class="picture2" src="{{car.imageUrl}}">
+                     <img alt="{{car.Model}}" class="picture2" src="{{car.imageUrl}}">
 
-                    
                 </ng-template>
                 <ng-template pTemplate="footer" style="margin-top:auto">
                     <p class="space-between">
@@ -119,9 +117,41 @@
         <i class="pi pi-arrow-circle-right" style="color: #3B82F6; font-size: 4rem;"></i>
         </button>
     </div>
-
+    <h1 style="text-align: center;">Daily News</h1>
     <div class="centar">
-       <h1>Daily News</h1>
-    </div>
+      
+       <div class="container" style="background-color: white;margin-bottom: 20px;" >
+        <div class="left" style="border-right: 1px solid #ccc;">
+            <h2 style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">1972 Buick Riviera on Bring a Trailer Is One Bodacious Boattail</h2>
+            <p style="font-size: 14px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;;margin: 0;padding: 0;" >One look at it and you'll understand why it's our Bring a Trailer auction pick of the day.</p>
+            <p style="font-size: 12px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;" >BY <a href="https://www.caranddriver.com/author/2754/brendan-mcaleer/" target="_blank" style="">BRENDAN MCALEER</a> &nbsp;UPDATED: SEP 10, 2023</p>
+            <img src="../../../assets/buick-riviera.jpg" class="oldcar">
+            <ul style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+                <li>
+                    Far more charismatic than anything in Buick's current all-SUV lineup, this swaggering coupe hails from an age when Buick cranked out hits.
+                </li>
+                <li>
+                    The iconic boattail styling still looks great half a century after this car hit the road, and brown on tan was never a more appropriate color combination.
+                </li>
+                <li>
+                    The Bring a Trailer online auction on this '72 Riviera ends on Thursday, September 14.
+                </li>
+            </ul>
+            <p style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;"><a href="https://www.caranddriver.com/news/a45054447/1972-buick-riviera-bat-auction/" target="_blank">Read more...</a></p>
+        </div>
+        <div class="right">
+            <h2 style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">Autocar's A-Z of excellent used cars</h2>
+            <p style="font-size: 14px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;;margin: 0;padding: 0;" >With our complete guide, you'll never be short of inspiration for your next second-hand buy</p>
+            <p style="font-size: 12px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;" >BY <a href="https://www.autocar.co.uk/users/richard-bremner" target="_blank" style=""> Richard Bremner</a> &nbsp;UPDATED: SEP 9, 2023</p>
+            <h5  style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;"> Today's used car market can be a congested mess of questionable machinery the owners of which have priced a little too keenly.</h5>
+            <p>If you're looking to buy a used car but are unsure how to navigate the market, or are simply in need of some inspiration, look no further than our A-Z. 
 
+                We've got everything from the £500 Mazda RX-8 to Lexus's £650,000 LFA to help you plot your journey no matter the budget, and we've provided a handy price guide so you can make sure you're getting the best deal on the forecourt (or driveway).</p>
+            <p style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;"><a href="https://www.autocar.co.uk/slideshow/autocars-z-excellent-used-cars-0" target="_blank">Read more...</a></p>
+            <img src="../../../assets/boxster_2012_a_0_1.webp" class="oldcar">
+        </div>
+    </div>
+    
+    </div>
+    
 </div>

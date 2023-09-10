@@ -85,7 +85,9 @@ UserModel.saveUser = async function(email,username,password)
 }
 UserModel.updateUser = async function (userObj){
     let user = await UserModel.findById(userObj._id);
-    Object.assign(user, userObj);
+    user.email=userObj.email
+    user.username=userObj.username
+    user.savePassword(userObj.password)
     user.save();
 
     return user;

@@ -112,3 +112,20 @@
   justify-content: center;
   
 }
+.container {
+  display: flex;
+  
+}
+
+.left, .right {
+  width: 50%;
+  padding: 10px;
+
+}
+.oldcar
+{
+  display: block;
+  margin: 0 auto;
+  width: 620px;
+  height: 400px;
+}

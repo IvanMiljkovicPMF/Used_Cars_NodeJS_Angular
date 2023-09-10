@@ -1,1 +1,79 @@
-<p>edit-user works!</p>
+<div *ngIf="loading" class="loading-spinner center mt-5">
+    <div class="spinner"></div>
+  </div>
+<div *ngIf="!loading">
+  <form (ngSubmit)="editUser()" [formGroup]="editUserForm" class="editUserForm"  style="margin-bottom: 94px;">
+    <p-panel header="Edit Car">
+        <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
+          <div class="ui-grid-row">
+            
+            <div class="ui-grid-col-6">
+                <input pInputText type="hidden" formControlName="_id" class="form-control" name="_id">
+            </div>
+            
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    Username:
+                </div>
+                <div class="ui-grid-col-6">
+                    <input pInputText type="text" formControlName="username" class="form-control" name="username">
+                </div>
+                <div class="ui-grid-col-4">
+                    <div [hidden]="editUserForm.controls['username'].valid || !editUserForm.controls['username'].dirty" class="alert alert-danger">
+                        Username is required
+                    </div>
+                </div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    Email:
+                </div>
+                <div class="ui-grid-col-6">
+                    <input pInputText type="text" formControlName="email" class="form-control" name="email">
+                </div>
+                <div class="ui-grid-col-4">
+                    <div [hidden]="editUserForm.controls['email'].valid || !editUserForm.controls['email'].dirty" class="alert alert-danger">
+                        Email is required
+                    </div>
+                </div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                   New Password:
+                </div>
+                <div class="ui-grid-col-6">
+                    <input pInputText type="password" formControlName="newpassword" class="form-control" name="newpassword">
+                </div>
+                <div class="ui-grid-col-4">
+                    <div [hidden]="editUserForm.controls['newpassword'].valid || !editUserForm.controls['newpassword'].dirty" class="alert alert-danger">
+                        Password is required
+                    </div>
+                </div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    Repeat Password:
+                </div>
+                <div class="ui-grid-col-6">
+                    <input pInputText type="password" formControlName="repeatpassword" class="form-control" name="repeatpassword">
+                </div>
+                <div class="ui-grid-col-4">
+                    <div [hidden]="editUserForm.controls['repeatpassword'].valid || !editUserForm.controls['repeatpassword'].dirty" class="alert alert-danger">
+                        Password is required
+                    </div>
+                </div>
+            </div>
+            <div class="ui-grid-row" id="buttonLogin">
+                <div class="ui-grid-col-2"></div>
+                <div class="ui-grid-col-6">
+                    <button  pButton type="submit" label="Submit" [disabled]="!editUserForm.valid"></button>
+                </div>
+                <div class="ui-grid-col-4"></div>
+            </div>
+        </div>
+    </p-panel>
+</form>
+
+</div>
+

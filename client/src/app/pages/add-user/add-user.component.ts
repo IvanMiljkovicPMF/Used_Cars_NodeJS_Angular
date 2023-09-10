@@ -27,6 +27,7 @@ export class AddUserComponent implements OnInit {
     
     this.userService.addUser(this.user).subscribe({
       next:()=>{
+        alert("You have successfully created a user.")
         this.router.navigate(['users-portal']);
       }
     })
