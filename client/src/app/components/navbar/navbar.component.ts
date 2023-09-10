@@ -96,7 +96,9 @@ export class NavbarComponent {
     this.authService.logOut()
     this.loggedIn = this.authService.isAuthenticated()
     this.carsService.resetHeaders()
+    this.cookie.delete("role")
     this.router.navigate([`home`])
+
   }
 
   ngOnDestroy() {

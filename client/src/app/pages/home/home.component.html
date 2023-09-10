@@ -2,7 +2,7 @@
     <div class="centar1">
         <h1>Search</h1>
         <div class="card">
-            <div class="up-text">
+            <div class="up-text mt-2">
                 <div class="left-text">
                     <label for="makeInput">Insert make brand:</label>
                     <input [(ngModel)]="make" pInputText type="text" id="makeInput" placeholder="Insert make brand">
@@ -94,7 +94,7 @@
         <i class="pi pi-arrow-circle-left" style="color: #3B82F6; font-size: 4rem;"></i>
         </button>
         <div *ngFor="let car of bestBuyToDisplay">
-            <p-card (click)="navigateTo(car._id)" [style]="{'width': '300px','height':'350px','margin-left':'10px','margin-right':'10px' ,'margin-bottom': '8px', 'cursor': 'pointer'}">
+            <p-card (click)="navigateTo(car._id)" class="carnew" [style]="{'width': '300px','height':'350px','margin-left':'10px','margin-right':'10px' ,'margin-bottom': '8px', 'cursor': 'pointer'}">
                 <ng-template pTemplate="title"> 
                     {{car.Model}}
                 </ng-template>

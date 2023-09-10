@@ -4,7 +4,7 @@
     <h1>{{car.Model}}</h1>
     <p>{{car.SellerName}}</p>
     <img alt="{{car.Model}}" class="picture" src="{{imageUrl}}">
-    <p-button *ngIf="checkIfVendor()" (click)="buyCar()" label="Buy car" ></p-button>
+    <p-button *ngIf="loggedIn && checkIfVendor()" (click)="buyCar()" label="Buy car" ></p-button>
 </div>
 
 

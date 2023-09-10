@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import axios from 'axios';
 import { CookieService } from 'ngx-cookie-service';
+import { AuthService } from 'src/app/services/auth.service/auth.service';
 import { CarsService } from 'src/app/services/cars.service/cars.service';
 
 
@@ -18,6 +19,7 @@ export class SingleCarComponent {
   car: any
 
   imageUrl: string = ''
+  loggedIn: boolean = false
 
   loading: boolean = true
 
@@ -25,7 +27,8 @@ export class SingleCarComponent {
     private route: ActivatedRoute,
     private carsService: CarsService,
     private router: Router,
-    private cookie:CookieService
+    private cookie:CookieService,
+    private authService: AuthService
     ){
 
   }
@@ -34,7 +37,11 @@ export class SingleCarComponent {
       this.carId = params.get('id')!
     })
     // console.log(this.carId);
+    this.loggedIn = this.authService.isAuthenticated()
+
+
     this.getCarById()
+    
   }
 
   getCarById(){
