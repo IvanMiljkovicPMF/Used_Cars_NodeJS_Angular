@@ -21,13 +21,13 @@
                 <a (click)="menu.toggle($event)" *ngIf="loggedIn && checkIfAdmin()" class="nav-link" [routerLinkActive]="['active']"
                 style="cursor: pointer;">Admin portal</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" [routerLinkActive]="['active']">
                 <a [routerLink]="'/login'" *ngIf="!loggedIn" class="nav-link" [routerLinkActive]="['active']">Login</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" [routerLinkActive]="['active']">
                 <a [routerLink]="'/register'" *ngIf="!loggedIn" class="nav-link" [routerLinkActive]="['active']">Sign In</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" >
                 <a (click)="logOut()" style="cursor: pointer;" *ngIf="loggedIn" class="nav-link" [routerLinkActive]="['active']">Log out</a>
             </li>
             <!-- Add more navigation items here -->
