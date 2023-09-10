@@ -10,6 +10,12 @@ router.get('/',
                 )
 router.get('/:id',UserController.getUserByID)
 
+router.post('/', 
+                    passport.authenticate('jwt', {session: false}), 
+                    passport.authorizeRoles('ADMIN'),
+                    UserController.saveUser
+                    )
+
 router.put('/', 
                 passport.authenticate('jwt', {session: false}), 
                 passport.authorizeRoles('ADMIN'),

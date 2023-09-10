@@ -69,7 +69,20 @@ UserModel.register=async function(email,username,password)
         return null;
     }
 }
+UserModel.saveUser = async function(email,username,password)
+{
+    let user=new UserModel({
+        email:email,
+        username:username,
+        admin:false,
+        vendor:true
+    })
+    user.savePassword(password)
+    user.save();
+    
+    return user
 
+}
 UserModel.updateUser = async function (userObj){
     let user = await UserModel.findById(userObj._id);
     Object.assign(user, userObj);
