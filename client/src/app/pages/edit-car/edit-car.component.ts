@@ -49,7 +49,7 @@ export class EditCarComponent {
   }
 
   editCar(){
-    alert("ovde proslediti podatke izmenjene podatke")
+    // alert("ovde proslediti podatke izmenjene podatke")
   //   this.carsService.editCar(this.editedCar).subscribe({
   //     next:val=>{
   //       console.log(val);

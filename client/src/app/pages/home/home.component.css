@@ -1,9 +1,10 @@
 .card{
-    height: 270px;
-    width: 800px;
-    background-color: rgba(241, 241, 241, 0.85);
-    border: none;
-    border-radius: 30px;
+  height: 290px;
+  width: 800px;
+  background-color: rgba(241, 241, 241, 0.85);
+  border: none;
+  border-radius: 30px;
+  padding-top: 20px;
 }
 .container{
     display: flex;
