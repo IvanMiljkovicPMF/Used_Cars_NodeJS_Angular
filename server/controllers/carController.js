@@ -11,10 +11,10 @@ let getAllCarsPagination=async(req,res)=>{
         const filter = {};
 
         if (model) {
-          filter.Model = model;
+          filter.Model = { $regex: model, $options: 'i' };
         }
         if (make) {
-          filter.Make = make;
+          filter.Make = { $regex: make, $options: 'i' };
         }
         if (minPrice && maxPrice) {
           // Convert minPrice and maxPrice to Int32
