@@ -1,6 +1,53 @@
-.picture{
-    height: 330px;
-    width: 500px;
-    object-fit: contain;
-    margin-left: 20px;
+  .loading-spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
   }
+  
+  .spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-top-color: white;
+    border-radius: 50%;
+    width: 125px;
+    height: 125px;
+    animation: spin 1s linear infinite;
+  }
+  @keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }   
+}
+.picture{
+  height: 360px;
+  width: 520px;
+  object-fit: contain;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.content{
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 20px;
+
+
+}
+.picture-text{
+  display: flex;
+  justify-content: space-around;
+}
+.text{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.button-buy{
+  margin-top: 20px;
+}

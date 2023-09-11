@@ -122,9 +122,12 @@ export class SingleCarComponent {
       })
   } else {
       
+    }
   }
-  
-    
+
+  openLink() {
+    const externalUrl = `https://www.google.com/search?q=${this.car.Model}`;
+    window.open(externalUrl, '_blank');
   }
 
 }
