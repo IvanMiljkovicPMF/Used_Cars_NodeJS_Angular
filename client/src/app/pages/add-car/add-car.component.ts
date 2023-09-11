@@ -42,6 +42,7 @@ export class AddCarComponent implements OnInit{
     const car:Cars=this.addCarForm.value
     this.carService.addCar(car).subscribe({
       next:()=>{
+        alert("You have successfully created a car ad.")
         this.router.navigate(['cars-portal']);
       }
     })

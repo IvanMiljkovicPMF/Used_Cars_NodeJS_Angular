@@ -33,21 +33,21 @@ export class CarsPortalComponent {
   }
 
   deleteCar(id:string){
-
-    // Use the filter method to create a new array without the item with the matching ID
-    // this.allCars = this.allCars.filter(car => car._id !== id);
+    if (window.confirm("Are you sure you want to delete this car ad?")) {
+      this.carService.deleteCar(id).subscribe({
+        next:val=>{
+          alert("You have deleted a car ad.")
+          this.allCars = this.allCars.filter(car => car._id !== id);
+          this.getCars(this.currentPage)
+        },
+        error:err=>{
+          console.log(err);
+          alert("An error has occured")
+          
+        }
+      })
+    }
     
-    this.carService.deleteCar(id).subscribe({
-      next:val=>{
-        console.log(val);
-        this.allCars = this.allCars.filter(car => car._id !== id);
-      },
-      error:err=>{
-        console.log(err);
-        alert("An error has occured")
-        
-      }
-    })
   }
 
   changePage(event:any){

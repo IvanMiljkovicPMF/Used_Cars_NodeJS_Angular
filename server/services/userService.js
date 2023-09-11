@@ -12,7 +12,10 @@ let getUserByID = function(id)
 {
     return UserModel.findById(id)
 }
-
+let saveUser = function(email, name, password)
+{
+    return UserModel.saveUser(email, name, password)
+}
 let updateUser= function(car)
 {
     return UserModel.updateUser(car);
@@ -26,6 +29,7 @@ module.exports = {
     register,
     getAllUsers,
     getUserByID,
+    saveUser,
     updateUser,
     deleteById
 }

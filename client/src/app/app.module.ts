@@ -29,7 +29,7 @@ import { PanelModule } from 'primeng/panel';
 import { AddUserComponent } from './pages/add-user/add-user.component';
 import { EditUserComponent } from './pages/edit-user/edit-user.component';
 import { UsersPortalComponent } from './pages/users-portal/users-portal.component';
-
+import { ScrollTopModule } from 'primeng/scrolltop';
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,7 +65,8 @@ import { UsersPortalComponent } from './pages/users-portal/users-portal.componen
     PaginatorModule,
     InputNumberModule,
     ReactiveFormsModule,
-    PanelModule
+    PanelModule,
+    ScrollTopModule
   ],
   providers: [],
   bootstrap: [AppComponent]

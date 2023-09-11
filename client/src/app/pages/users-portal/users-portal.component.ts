@@ -29,8 +29,6 @@ export class UsersPortalComponent {
     this.userService.getUsers().subscribe({
       next:val=>{
         this.loading = false
-        console.log(val);
-        console.log(val.users);
         this.users = []
         
         for(let i =0;i<val.users.length;i++){
@@ -50,21 +48,21 @@ export class UsersPortalComponent {
   }
 
   deleteUser(id:string){
+    if (window.confirm("Are you sure you want to delete this user?")) {
+      this.userService.deleteUser(id).subscribe({
+        next:val=>{
+          alert("You have deleted a user.")
+          this.users = this.users.filter(user => user._id !== id);
+        },
+        error:err=>{
+          console.log(err);
+          alert("An error has occured")
+          
+        }
+      })
+    }
 
-    // Use the filter method to create a new array without the item with the matching ID
-    // this.allCars = this.allCars.filter(car => car._id !== id);
-    
-    this.userService.deleteUser(id).subscribe({
-      next:val=>{
-        console.log(val);
-        this.users = this.users.filter(user => user._id !== id);
-      },
-      error:err=>{
-        console.log(err);
-        alert("An error has occured")
-        
-      }
-    })
+   
   }
 
 }

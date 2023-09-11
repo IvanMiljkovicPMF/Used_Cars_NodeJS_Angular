@@ -69,9 +69,7 @@ export class CarsService {
 
   editCar(car:Cars):Observable<any>{
     return this.httpClient.put<any>(`http://localhost:3000/profile/edit`,
-    {
-      car: car
-    },
+    car,
     {
       headers: this.headers
     })

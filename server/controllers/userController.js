@@ -46,6 +46,19 @@ let getUserByID=async(req,res)=>{
     res.status(500).json({ error: 'HTTP 500 error' });
   }
 }
+let saveUser = async (req, res) => {
+  try {
+    const user = await UserServices.saveUser(req.body.email, req.body.username, req.body.password);
+    
+    if (!user) {
+      return res.status(503).json({ msg: "User exists" });
+    }
+    return res.status(201).json({ user });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ msg: "Internal server error" });
+  }
+};
 let updateUser = async(req,res)=>{
   try {
     
@@ -80,6 +93,8 @@ module.exports={
     login,
     getAllUsers,
     getUserByID,
+    saveUser,
     updateUser,
     deleteById
+
 }

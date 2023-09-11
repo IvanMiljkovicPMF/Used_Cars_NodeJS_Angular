@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
+import { Register } from 'src/app/models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -50,21 +51,17 @@ export class UsersService {
     })
   }
 
-  editUser():Observable<any>{
+  editUser(user:Register):Observable<any>{
     return this.httpClient.put<any>(`http://localhost:3000/users`,
-    {
-      // Todo ovde user
-    },
+    user,
     {
       headers:this.headers
     })
   }
 
-  addUser():Observable<any>{
+  addUser(user:Register):Observable<any>{
     return this.httpClient.post<any>(`http://localhost:3000/users`,
-    {
-      // Todo ovde user
-    },
+    user,
     {
       headers:this.headers
     })
