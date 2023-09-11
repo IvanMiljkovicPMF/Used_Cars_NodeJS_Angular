@@ -126,9 +126,8 @@ export class SingleCarComponent {
   }
 
   openLink() {
-    // log
     const externalUrl = `https://www.google.com/search?q=${this.car.Model}`;
-    window.open(externalUrl, '_blank'); // '_blank' opens the link in a new tab/window
+    window.open(externalUrl, '_blank');
   }
 
 }
